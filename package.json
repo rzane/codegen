@@ -1,0 +1,25 @@
+{
+  "name": "@stackup/codegen",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "prepack": "tsc -b"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "jest": {
+    "preset": "ts-jest"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.5",
+    "jest": "^25.2.6",
+    "ts-jest": "^25.3.0",
+    "typescript": "^3.8.3"
+  }
+}
