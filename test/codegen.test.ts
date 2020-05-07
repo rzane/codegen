@@ -2,7 +2,7 @@ import { join } from "path";
 import { tmpdir } from "os";
 import { promises as fs } from "fs";
 import { randomBytes } from "crypto";
-import { generate, Config, generateAndWrite } from "../src";
+import { generate, generateAndWrite, GenerateConfig } from "../src/codegen";
 
 const tmp = (...path: string[]): string => {
   const rand = randomBytes(10).toString("hex");
@@ -13,7 +13,7 @@ const fixture = (...path: string[]): string => {
   return join(__dirname, "fixtures", ...path);
 };
 
-const makeConfig = (opts: Partial<Config> = {}): Config => ({
+const makeConfig = (opts: Partial<GenerateConfig> = {}): GenerateConfig => ({
   output: tmp("index.ts"),
   schema: fixture("schema.graphql"),
   input: fixture("queries.graphql"),
