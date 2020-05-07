@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
 require("ts-node/register");
-require("../src").run(process.argv);
+require("../src/cli").run(process.argv);
