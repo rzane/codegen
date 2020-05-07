@@ -12,12 +12,24 @@
     "lib/**/*"
   ],
   "jest": {
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   },
   "dependencies": {
+    "@graphql-codegen/core": "^1.13.4",
+    "@graphql-codegen/schema-ast": "^1.13.4",
+    "@graphql-codegen/typescript": "^1.13.4",
+    "@graphql-codegen/typescript-operations": "^1.13.4",
+    "@graphql-codegen/typescript-react-apollo": "^1.13.4",
+    "@graphql-toolkit/core": "^0.10.6",
+    "@graphql-toolkit/graphql-file-loader": "^0.10.6",
+    "@graphql-toolkit/json-file-loader": "^0.10.6",
+    "@graphql-toolkit/url-loader": "^0.10.6"
   },
   "devDependencies": {
     "@types/jest": "^25.1.5",
+    "graphql": "^14.0.0",
+    "graphql-tag": "^2.10.3",
     "jest": "^25.2.6",
     "ts-jest": "^25.3.0",
     "typescript": "^3.8.3"

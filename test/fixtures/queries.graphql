@@ -1,0 +1,13 @@
+query Post($id: ID!) {
+  post(id: $id) {
+    id
+    title
+  }
+}
+
+mutation CreatePost($data: PostInput!) {
+  createPost(data: $data) {
+    id
+    title
+  }
+}
