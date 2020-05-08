@@ -1,9 +1,9 @@
-import { Command } from "commander";
-import { generateAndWrite } from "./generate";
+import { program } from "commander";
+import { generateAndWrite } from "./index";
 
 const pkg = require("../package.json");
 
-const command = new Command()
+program
   .name("codegen")
   .version(pkg.version)
   .description("generate type definitions from GraphQL queries")
@@ -29,8 +29,5 @@ const command = new Command()
       immutable: opts.immutable,
       suffix: opts.suffix,
     });
-  });
-
-export const run = async (argv: string[]) => {
-  return command.parseAsync(argv);
-};
+  })
+  .parseAsync(process.argv);

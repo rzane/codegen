@@ -2,7 +2,7 @@ import { join } from "path";
 import { tmpdir } from "os";
 import { promises as fs } from "fs";
 import { randomBytes } from "crypto";
-import { generate, generateAndWrite, GenerateOptions } from "../src/generate";
+import { generate, generateAndWrite, GenerateOptions } from "../src";
 
 const tmp = (...path: string[]): string => {
   const rand = randomBytes(10).toString("hex");
