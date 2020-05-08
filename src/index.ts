@@ -1,5 +1,3 @@
-import { promises as fs } from "fs";
-import { dirname } from "path";
 import { parse, printSchema } from "graphql";
 import { codegen } from "@graphql-codegen/core";
 import { loadSchema, loadDocuments } from "@graphql-toolkit/core";
@@ -10,7 +8,7 @@ import * as typescript from "@graphql-codegen/typescript";
 import * as typescriptOperations from "@graphql-codegen/typescript-operations";
 import * as typescriptReactApollo from "@graphql-codegen/typescript-react-apollo";
 
-export interface GenerateOptions {
+export interface Options {
   input: string;
   output: string;
   schema: string;
@@ -18,38 +16,31 @@ export interface GenerateOptions {
   immutable?: boolean;
 }
 
+export interface Result {
+  schema: string;
+  code: string;
+}
+
 const makeDefault = <T>(value: T | undefined, defaultValue: T): T => {
   return typeof value === "undefined" ? defaultValue : value;
 };
 
 /**
- * Generate code and write it to disk.
- */
-export const generateAndWrite = async (
-  config: GenerateOptions
-): Promise<void> => {
-  const code = await generate(config);
-  const parent = dirname(config.output);
-
-  await fs.mkdir(parent, { recursive: true });
-  await fs.writeFile(config.output, code);
-};
-
-/**
  * Generate code and return it as a string.
  */
-export const generate = async (config: GenerateOptions): Promise<string> => {
-  const schemaAst = await loadSchema(config.schema, {
+export const generate = async (opts: Options): Promise<Result> => {
+  const schemaAst = await loadSchema(opts.schema, {
     loaders: [new UrlLoader(), new JsonFileLoader(), new GraphQLFileLoader()],
   });
 
-  const documents = await loadDocuments(config.input, {
+  const documents = await loadDocuments(opts.input, {
     loaders: [new GraphQLFileLoader()],
   });
 
-  return codegen({
-    filename: config.output,
-    schema: parse(printSchema(schemaAst)),
+  const schema = printSchema(schemaAst);
+  const code = await codegen({
+    filename: opts.output,
+    schema: parse(schema),
     schemaAst,
     documents,
     plugins: [
@@ -68,8 +59,8 @@ export const generate = async (config: GenerateOptions): Promise<string> => {
       withHooks: true,
       noNamespaces: true,
       preResolveTypes: true,
-      omitOperationSuffix: makeDefault(config.suffix, true),
-      immutableTypes: makeDefault(config.immutable, false),
+      omitOperationSuffix: makeDefault(opts.suffix, true),
+      immutableTypes: makeDefault(opts.immutable, false),
       scalars: {
         DateTime: "string",
         Date: "string",
@@ -78,4 +69,6 @@ export const generate = async (config: GenerateOptions): Promise<string> => {
       },
     },
   });
+
+  return { schema, code };
 };

@@ -1,3 +1,7 @@
+type Mutation {
+  createPost(data: PostInput!): Post
+}
+
 type Post {
   id: ID!
   title: String!
@@ -9,13 +13,4 @@ input PostInput {
 
 type Query {
   post(id: ID!): Post
-}
-
-type Mutation {
-  createPost(data: PostInput!): Post
-}
-
-schema {
-  query: Query
-  mutation: Mutation
 }

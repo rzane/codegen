@@ -6,6 +6,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest",
+    "codegen": "ts-node src/cli.ts",
     "prepack": "tsc -b"
   },
   "bin": {
@@ -37,8 +38,8 @@
     "@graphql-toolkit/graphql-file-loader": "^0.10.6",
     "@graphql-toolkit/json-file-loader": "^0.10.6",
     "@graphql-toolkit/url-loader": "^0.10.6",
-    "commander": "^5.1.0",
-    "graphql-codegen-cli": "^0.6.0-alpha.62b22f38"
+    "@types/minimist": "^1.2.0",
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
     "@types/jest": "^25.1.5",
