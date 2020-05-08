@@ -5,7 +5,7 @@ import { generate } from "./index";
 
 const help = `Usage: codegen [ROOT] [options]
 
-generate type definitions from GraphQL queries
+Generate type definitions from GraphQL queries.
 
 Options:
   -s, --schema <SCHEMA>  URL or file path to a GraphQL schema

@@ -12,22 +12,37 @@ A zero-config CLI tool to generate GraphQL type definitions and React Hooks. It'
 
 ## Install
 
-```bash
-$ yarn add @stackup/codegen --dev
-```
+    $ yarn add @stackup/codegen --dev
+    $ yarn codegen --help
+    Usage: codegen [ROOT] [options]
+
+    Generate type definitions from GraphQL queries.
+
+    Options:
+      -s, --schema <SCHEMA>  URL or file path to a GraphQL schema
+      --suffix               append suffix (e.g. Mutation, Query)
+      --immutable            generate readonly types
+      -v, --version          output the version number
+      -h, --help             display help for command
 
 ## Usage
 
-```
-$ yarn codegen --help
-Usage: codegen [ROOT] [options]
+You have a directory of queries:
 
-generate type definitions from GraphQL queries
+    src/
+      queries/
+        posts.graphql
+        users.graphql
 
-Options:
-  -s, --schema <SCHEMA>  URL or file path to a GraphQL schema
-  --suffix               append suffix (e.g. Mutation, Query)
-  --immutable            generate readonly types
-  -v, --version          output the version number
-  -h, --help             display help for command
-```
+Run the code generator:
+
+    $ yarn codegen src/queries --schema http://localhost:3000/graphql
+
+Now, you have code!
+
+    src/
+      queries/
+        index.ts       <- This module exports a bunch of typed React Hooks
+        schema.graphql <- This file contains your GraphQL schema
+        posts.graphql
+        users.graphql
