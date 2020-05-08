@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { generateAndWrite } from "./codegen";
+import { generateAndWrite } from "./generate";
 
 const pkg = require("../package.json");
 const program = new Command();
@@ -8,7 +8,7 @@ program.name("devtool");
 program.version(pkg.version);
 
 program
-  .command("codegen")
+  .command("generate")
   .description("generate type definitions from GraphQL queries")
   .requiredOption(
     "-i, --input <input>",

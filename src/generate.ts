@@ -10,7 +10,7 @@ import * as typescript from "@graphql-codegen/typescript";
 import * as typescriptOperations from "@graphql-codegen/typescript-operations";
 import * as typescriptReactApollo from "@graphql-codegen/typescript-react-apollo";
 
-export interface GenerateConfig {
+export interface GenerateOptions {
   input: string;
   output: string;
   schema: string;
@@ -26,7 +26,7 @@ const makeDefault = <T>(value: T | undefined, defaultValue: T): T => {
  * Generate code and write it to disk.
  */
 export const generateAndWrite = async (
-  config: GenerateConfig
+  config: GenerateOptions
 ): Promise<void> => {
   const code = await generate(config);
   const parent = dirname(config.output);
@@ -38,7 +38,7 @@ export const generateAndWrite = async (
 /**
  * Generate code and return it as a string.
  */
-export const generate = async (config: GenerateConfig): Promise<string> => {
+export const generate = async (config: GenerateOptions): Promise<string> => {
   const schemaAst = await loadSchema(config.schema, {
     loaders: [new UrlLoader(), new JsonFileLoader(), new GraphQLFileLoader()],
   });
