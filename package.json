@@ -1,5 +1,5 @@
 {
-  "name": "@stackup/devtool",
+  "name": "@stackup/codegen",
   "version": "0.1.0",
   "license": "MIT",
   "main": "lib/index.js",
@@ -9,7 +9,7 @@
     "prepack": "tsc -b"
   },
   "bin": {
-    "devtool": "bin/devtool"
+    "codegen": "bin/codegen"
   },
   "files": [
     "lib/**/*"

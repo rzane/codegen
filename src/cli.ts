@@ -2,13 +2,10 @@ import { Command } from "commander";
 import { generateAndWrite } from "./generate";
 
 const pkg = require("../package.json");
-const program = new Command();
 
-program.name("devtool");
-program.version(pkg.version);
-
-program
-  .command("generate")
+const command = new Command()
+  .name("codegen")
+  .version(pkg.version)
   .description("generate type definitions from GraphQL queries")
   .requiredOption(
     "-i, --input <input>",
@@ -35,5 +32,5 @@ program
   });
 
 export const run = async (argv: string[]) => {
-  return program.parseAsync(argv);
+  return command.parseAsync(argv);
 };
