@@ -14,6 +14,15 @@
   "files": [
     "lib/**/*"
   ],
+  "description": "Generate types for a GraphQL API",
+  "homepage": "https://github.com/promptworks/codegen#readme",
+  "bugs": {
+    "url": "https://github.com/promptworks/codegen/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/promptworks/codegen.git"
+  },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
@@ -28,7 +37,8 @@
     "@graphql-toolkit/graphql-file-loader": "^0.10.6",
     "@graphql-toolkit/json-file-loader": "^0.10.6",
     "@graphql-toolkit/url-loader": "^0.10.6",
-    "commander": "^5.1.0"
+    "commander": "^5.1.0",
+    "graphql-codegen-cli": "^0.6.0-alpha.62b22f38"
   },
   "devDependencies": {
     "@types/jest": "^25.1.5",

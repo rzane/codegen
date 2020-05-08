@@ -2260,6 +2260,11 @@ graceful-fs@^4.2.4:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
+graphql-codegen-cli@^0.6.0-alpha.62b22f38:
+  version "0.6.0-alpha.62b22f38"
+  resolved "https://registry.yarnpkg.com/graphql-codegen-cli/-/graphql-codegen-cli-0.6.0-alpha.62b22f38.tgz#2b1ba3bc5e9e2f38c573e6e3052683f9a04244f0"
+  integrity sha1-KxujvF6eLzjFc+bjBSaD+aBCRPA=
+
 graphql-tag@2.10.3, graphql-tag@^2.10.3:
   version "2.10.3"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.3.tgz#ea1baba5eb8fc6339e4c4cf049dabe522b0edf03"
