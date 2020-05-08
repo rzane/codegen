@@ -20,16 +20,14 @@ $ yarn add @stackup/codegen --dev
 
 ```
 $ yarn codegen --help
-Usage: codegen [options]
+Usage: codegen [ROOT] [options]
 
 generate type definitions from GraphQL queries
 
 Options:
-  -V, --version          output the version number
-  -i, --input <input>    glob of queries to generate types for
-  -o, --output <output>  path to file that will be generated
-  -s, --schema <schema>  URL or file path to a GraphQL schema
+  -s, --schema <SCHEMA>  URL or file path to a GraphQL schema
   --suffix               append suffix (e.g. Mutation, Query)
   --immutable            generate readonly types
+  -v, --version          output the version number
   -h, --help             display help for command
 ```
