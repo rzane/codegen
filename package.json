@@ -15,13 +15,13 @@
     "lib/**/*"
   ],
   "description": "Generate types for a GraphQL API",
-  "homepage": "https://github.com/promptworks/codegen#readme",
+  "homepage": "https://github.com/rzane/codegen#readme",
   "bugs": {
-    "url": "https://github.com/promptworks/codegen/issues"
+    "url": "https://github.com/rzane/codegen/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/promptworks/codegen.git"
+    "url": "git+https://github.com/rzane/codegen.git"
   },
   "jest": {
     "preset": "ts-jest",

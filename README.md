@@ -8,6 +8,8 @@
 
 </div>
 
+A zero-config CLI tool to generate GraphQL type definitions and React Hooks. It's a thin wrapper around [GraphQL code generator](https://graphql-code-generator.com/).
+
 ## Install
 
 ```bash
