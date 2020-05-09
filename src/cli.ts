@@ -14,8 +14,7 @@ Options:
   --suffix               append suffix (e.g. Mutation, Query)
   --immutable            generate readonly types
   -v, --version          output the version number
-  -h, --help             display help for command
-`;
+  -h, --help             display help for command`;
 
 export const execute = async (
   argv: string[],
