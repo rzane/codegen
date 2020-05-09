@@ -6,11 +6,11 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest",
-    "codegen": "ts-node src/cli.ts",
-    "prepack": "tsc -b"
+    "prepack": "tsc -b",
+    "codegen": "ts-node src/cli.ts"
   },
   "bin": {
-    "codegen": "bin/codegen"
+    "codegen": "lib/cli.js"
   },
   "files": [
     "lib/**/*"
