@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import parse from "minimist";
 import { join } from "path";
 import { promises as fs } from "fs";
@@ -58,9 +60,19 @@ export const execute = async (
   await fs.writeFile(schemaOutput, result.schema);
 };
 
+/**
+ * If this file is invoked as an executable, run the program.
+ */
 if (require.main === module) {
   execute(process.argv, process.env, console.log).catch((error) => {
-    console.error(error);
+    if (process.env.DEBUG) {
+      console.error(error);
+    } else if (error.code) {
+      console.error(`${error.code}: ${error.message}`);
+    } else {
+      console.error(error.message);
+    }
+
     process.exit(1);
   });
 }
