@@ -18,6 +18,9 @@ jobs:
       - name: Dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Test
+        run: yarn test --ci --coverage
+
       - name: Set version
         run: yarn version --new-version "${GITHUB_REF:11}" --no-git-tag-version
 
