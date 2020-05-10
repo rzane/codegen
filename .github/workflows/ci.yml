@@ -3,17 +3,54 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ['12.x']
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
-    - name: Test
-      run: yarn test --ci --coverage
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Test
+        run: yarn test --ci --coverage
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/master' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org
+
+      - name: Check
+        id: check
+        uses: rzane/is-unpublished@v1
+
+      - name: Dependencies
+        if: ${{ steps.check.outputs.is-unpublished == 'true' }}
+        run: yarn install --frozen-lockfile
+
+      - name: Publish
+        if: ${{ steps.check.outputs.is-unpublished == 'true' }}
+        run: yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Release
+        if: ${{ steps.check.outputs.is-unpublished == 'true' }}
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.check.outputs.version }}
+          release_name: v${{ steps.check.outputs.version }}
