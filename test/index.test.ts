@@ -18,14 +18,26 @@ test("generates code", async () => {
   expect(code).toMatchSnapshot();
 });
 
-test("generate code with immutable types", async () => {
+test("generates code with mutability by default", async () => {
+  const opts = makeOptions();
+  const { code } = await generate(opts);
+  expect(code).toContain("  id: Scalars['ID']");
+});
+
+test("generate code with immutability", async () => {
   const opts = makeOptions({ immutable: true });
   const { code } = await generate(opts);
-  expect(code).toContain("readonly id: Scalars['ID']");
+  expect(code).toContain("  readonly id: Scalars['ID']");
+});
+
+test("generates code without suffix by default", async () => {
+  const opts = makeOptions();
+  const { code } = await generate(opts);
+  expect(code).toContain("export function useCreatePost(");
 });
 
 test("generate code with suffix", async () => {
-  const opts = makeOptions({ immutable: true });
+  const opts = makeOptions({ suffix: true });
   const { code } = await generate(opts);
-  expect(code).toContain("type CreatePostMutation");
+  expect(code).toContain("export function useCreatePostMutation(");
 });

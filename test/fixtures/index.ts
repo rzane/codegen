@@ -41,19 +41,19 @@ export type QueryPostArgs = {
   id: Scalars['ID'];
 };
 
-export type PostQueryVariables = {
+export type PostVariables = {
   id: Scalars['ID'];
 };
 
 
-export type PostQuery = { __typename?: 'Query', post?: Maybe<{ __typename?: 'Post', id: string, title: string }> };
+export type Post = { __typename?: 'Query', post?: Maybe<{ __typename?: 'Post', id: string, title: string }> };
 
-export type CreatePostMutationVariables = {
+export type CreatePostVariables = {
   data: PostInput;
 };
 
 
-export type CreatePostMutation = { __typename?: 'Mutation', createPost?: Maybe<{ __typename?: 'Post', id: string, title: string }> };
+export type CreatePost = { __typename?: 'Mutation', createPost?: Maybe<{ __typename?: 'Post', id: string, title: string }> };
 
 
 export const PostDocument = gql`
@@ -66,30 +66,30 @@ export const PostDocument = gql`
     `;
 
 /**
- * __usePostQuery__
+ * __usePost__
  *
- * To run a query within a React component, call `usePostQuery` and pass it any options that fit your needs.
- * When your component renders, `usePostQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `usePost` and pass it any options that fit your needs.
+ * When your component renders, `usePost` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = usePostQuery({
+ * const { data, loading, error } = usePost({
  *   variables: {
  *      id: // value for 'id'
  *   },
  * });
  */
-export function usePostQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PostQuery, PostQueryVariables>) {
-        return ApolloReactHooks.useQuery<PostQuery, PostQueryVariables>(PostDocument, baseOptions);
+export function usePost(baseOptions?: ApolloReactHooks.QueryHookOptions<Post, PostVariables>) {
+        return ApolloReactHooks.useQuery<Post, PostVariables>(PostDocument, baseOptions);
       }
-export function usePostLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PostQuery, PostQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<PostQuery, PostQueryVariables>(PostDocument, baseOptions);
+export function usePostLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Post, PostVariables>) {
+          return ApolloReactHooks.useLazyQuery<Post, PostVariables>(PostDocument, baseOptions);
         }
-export type PostQueryHookResult = ReturnType<typeof usePostQuery>;
+export type PostHookResult = ReturnType<typeof usePost>;
 export type PostLazyQueryHookResult = ReturnType<typeof usePostLazyQuery>;
-export type PostQueryResult = ApolloReactCommon.QueryResult<PostQuery, PostQueryVariables>;
+export type PostQueryResult = ApolloReactCommon.QueryResult<Post, PostVariables>;
 export const CreatePostDocument = gql`
     mutation CreatePost($data: PostInput!) {
   createPost(data: $data) {
@@ -98,28 +98,28 @@ export const CreatePostDocument = gql`
   }
 }
     `;
-export type CreatePostMutationFn = ApolloReactCommon.MutationFunction<CreatePostMutation, CreatePostMutationVariables>;
+export type CreatePostMutationFn = ApolloReactCommon.MutationFunction<CreatePost, CreatePostVariables>;
 
 /**
- * __useCreatePostMutation__
+ * __useCreatePost__
  *
- * To run a mutation, you first call `useCreatePostMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreatePostMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreatePost` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePost` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createPostMutation, { data, loading, error }] = useCreatePostMutation({
+ * const [createPost, { data, loading, error }] = useCreatePost({
  *   variables: {
  *      data: // value for 'data'
  *   },
  * });
  */
-export function useCreatePostMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreatePostMutation, CreatePostMutationVariables>) {
-        return ApolloReactHooks.useMutation<CreatePostMutation, CreatePostMutationVariables>(CreatePostDocument, baseOptions);
+export function useCreatePost(baseOptions?: ApolloReactHooks.MutationHookOptions<CreatePost, CreatePostVariables>) {
+        return ApolloReactHooks.useMutation<CreatePost, CreatePostVariables>(CreatePostDocument, baseOptions);
       }
-export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
-export type CreatePostMutationResult = ApolloReactCommon.MutationResult<CreatePostMutation>;
-export type CreatePostMutationOptions = ApolloReactCommon.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
+export type CreatePostHookResult = ReturnType<typeof useCreatePost>;
+export type CreatePostMutationResult = ApolloReactCommon.MutationResult<CreatePost>;
+export type CreatePostMutationOptions = ApolloReactCommon.BaseMutationOptions<CreatePost, CreatePostVariables>;

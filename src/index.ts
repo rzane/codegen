@@ -21,10 +21,6 @@ export interface Result {
   code: string;
 }
 
-const makeDefault = <T>(value: T | undefined, defaultValue: T): T => {
-  return typeof value === "undefined" ? defaultValue : value;
-};
-
 /**
  * Generate code and return it as a string.
  */
@@ -38,6 +34,8 @@ export const generate = async (opts: Options): Promise<Result> => {
   });
 
   const schema = printSchema(schemaAst);
+  const { suffix = false, immutable = false } = opts;
+
   const code = await codegen({
     filename: opts.output,
     schema: parse(schema),
@@ -59,8 +57,8 @@ export const generate = async (opts: Options): Promise<Result> => {
       withHooks: true,
       noNamespaces: true,
       preResolveTypes: true,
-      omitOperationSuffix: makeDefault(opts.suffix, true),
-      immutableTypes: makeDefault(opts.immutable, false),
+      omitOperationSuffix: !suffix,
+      immutableTypes: immutable,
       scalars: {
         DateTime: "string",
         Date: "string",
