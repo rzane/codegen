@@ -63,7 +63,7 @@ export const execute = async (
  * If this file is invoked as an executable, run the program.
  */
 if (require.main === module) {
-  execute(process.argv, process.env, console.log).catch((error) => {
+  execute(process.argv.slice(2), process.env, console.log).catch((error) => {
     if (process.env.DEBUG) {
       console.error(error);
     } else if (error.code) {
