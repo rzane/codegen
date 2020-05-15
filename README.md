@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Build](https://github.com/rzane/codegen/workflows/CI/badge.svg)
+![Build](https://github.com/rzane/codegen/workflows/Build/badge.svg)
 ![Version](https://img.shields.io/npm/v/@stackup/codegen)
 ![License](https://img.shields.io/npm/l/@stackup/codegen)
 
