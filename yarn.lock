@@ -549,15 +549,6 @@
     tslib "~2.0.0"
     upper-case "2.0.1"
 
-"@graphql-codegen/schema-ast@^1.13.4":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/schema-ast/-/schema-ast-1.14.0.tgz#5fdee0fcf381d99785917fd024b19e6b6596c24d"
-  integrity sha512-iWAQnY8sDuxk2ouSzgNiXppNJQ5BnyqC4JmNvQMLHBE+9vjC5XGM1y5Qu6ib+76mbZSU5wc6aMi0e3HgSoabPA==
-  dependencies:
-    "@graphql-codegen/plugin-helpers" "1.14.0"
-    "@graphql-toolkit/common" "~0.10.4"
-    tslib "~2.0.0"
-
 "@graphql-codegen/typescript-operations@^1.13.4":
   version "1.13.5"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-operations/-/typescript-operations-1.13.5.tgz#842c779cd4d1facface08d937aa2fc37a4529a6f"
