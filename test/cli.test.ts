@@ -4,11 +4,11 @@ import { execute } from "../src/cli";
 
 const { version } = require("../package.json");
 const root = join(__dirname, "fixtures");
+const output = join(root, "index.ts");
 const schema = join(root, "schema.graphql");
 
-beforeEach(() => {
-  jest.resetAllMocks();
-});
+beforeEach(() => jest.resetAllMocks());
+beforeEach(() => fs.unlink(output).catch(() => {}));
 
 test("--version", async () => {
   const log = jest.fn();
