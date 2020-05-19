@@ -611,12 +611,12 @@
     lodash "4.17.15"
 
 "@graphql-toolkit/core@^0.10.6":
-  version "0.10.6"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/core/-/core-0.10.6.tgz#bb2d6bb2954f47bac7ed7709f317921ecd61b459"
-  integrity sha512-dUgYTmyIZH+rBVacjPgqO+7qCG5b6pD8niHVghX2h4UAMEApx2o/2TAsSsAMFlqrMA/haW1UIMsmKPw8Yj19ZA==
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/core/-/core-0.10.7.tgz#e4d86d9e439fbb05b634054b0865c16d488fad97"
+  integrity sha512-LXcFLG7XcRJrPz/xD+0cExzLx/ptVynDM20650/FbmHbKOU50d9mSbcsrzAOq/3f4q3HrRDssvn0f6pPm0EHMg==
   dependencies:
-    "@graphql-toolkit/common" "0.10.6"
-    "@graphql-toolkit/schema-merging" "0.10.6"
+    "@graphql-toolkit/common" "0.10.7"
+    "@graphql-toolkit/schema-merging" "0.10.7"
     aggregate-error "3.0.1"
     globby "11.0.0"
     import-from "^3.0.0"
@@ -624,7 +624,7 @@
     lodash "4.17.15"
     p-limit "2.3.0"
     resolve-from "5.0.0"
-    tslib "1.11.1"
+    tslib "1.11.2"
     unixify "1.0.0"
     valid-url "1.0.9"
 
@@ -652,15 +652,15 @@
     "@graphql-toolkit/common" "0.10.6"
     relay-compiler "9.1.0"
 
-"@graphql-toolkit/schema-merging@0.10.6", "@graphql-toolkit/schema-merging@~0.10.4":
-  version "0.10.6"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/schema-merging/-/schema-merging-0.10.6.tgz#9f57a349621a4377a3431a0320221d9aa6a9d982"
-  integrity sha512-BNABgYaNCw4Li3EiH/x7oDpkN+ml3M0SWqjnsW1Pf2NcyfGlv033Bda+O/q4XYtseZ0OOOh52GLXtUgwyPFb8A==
+"@graphql-toolkit/schema-merging@0.10.7", "@graphql-toolkit/schema-merging@~0.10.4":
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/schema-merging/-/schema-merging-0.10.7.tgz#7b33becd48629bc656d602405c0b5c17d33ebd85"
+  integrity sha512-VngxJbVdRfXYhdMLhL90pqN+hD/2XTZwhHPGvpWqmGQhT6roc98yN3xyDyrWFYYsuiY4gTexdmrHQ3d7mzitwA==
   dependencies:
-    "@graphql-toolkit/common" "0.10.6"
+    "@graphql-toolkit/common" "0.10.7"
     deepmerge "4.2.2"
     graphql-tools "5.0.0"
-    tslib "1.11.1"
+    tslib "1.11.2"
 
 "@graphql-toolkit/url-loader@^0.10.6":
   version "0.10.6"
