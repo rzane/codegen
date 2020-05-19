@@ -663,14 +663,14 @@
     tslib "1.11.2"
 
 "@graphql-toolkit/url-loader@^0.10.6":
-  version "0.10.6"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.10.6.tgz#6ea14e2cb821697e133e402a1a5063d318bc237a"
-  integrity sha512-Ts8h4zfcOKSp9TNk6uOvmkwDofXUr5cspxO2cpmd0zLnxceHYhe0D2Q/Bq1SPw3NGN2AqvAr7zD8T2z5NDVUKQ==
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.10.7.tgz#0de998eeeaebcbf918526a26cb5f30f8250211f0"
+  integrity sha512-Ec3T4Zuo63LwG+RfK2ryz8ChPfncBf8fiSJ1xr68FtLDVznDNulvlNKFbfREE5koWejwsnJrjLCv6IX5IbhExg==
   dependencies:
-    "@graphql-toolkit/common" "0.10.6"
+    "@graphql-toolkit/common" "0.10.7"
     cross-fetch "3.0.4"
     graphql-tools "5.0.0"
-    tslib "1.11.1"
+    tslib "1.11.2"
     valid-url "1.0.9"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
