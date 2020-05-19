@@ -12,7 +12,7 @@ export type Scalars = {
 };
 
 export type Mutation = {
-   __typename?: 'Mutation';
+  __typename?: 'Mutation';
   createPost?: Maybe<Post>;
 };
 
@@ -22,7 +22,7 @@ export type MutationCreatePostArgs = {
 };
 
 export type Post = {
-   __typename?: 'Post';
+  __typename?: 'Post';
   id: Scalars['ID'];
   title: Scalars['String'];
 };
@@ -32,7 +32,7 @@ export type PostInput = {
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: 'Query';
   post?: Maybe<Post>;
 };
 
