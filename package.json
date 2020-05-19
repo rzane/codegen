@@ -29,14 +29,14 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "@graphql-codegen/core": "^1.13.4",
-    "@graphql-codegen/typescript": "^1.13.4",
-    "@graphql-codegen/typescript-operations": "^1.13.4",
-    "@graphql-codegen/typescript-react-apollo": "^1.13.4",
-    "@graphql-toolkit/core": "^0.10.6",
-    "@graphql-toolkit/graphql-file-loader": "^0.10.6",
-    "@graphql-toolkit/json-file-loader": "^0.10.6",
-    "@graphql-toolkit/url-loader": "^0.10.6",
+    "@graphql-codegen/core": "^1.14.0",
+    "@graphql-codegen/typescript": "^1.14.0",
+    "@graphql-codegen/typescript-operations": "^1.14.0",
+    "@graphql-codegen/typescript-react-apollo": "^1.14.0",
+    "@graphql-toolkit/core": "^0.10.7",
+    "@graphql-toolkit/graphql-file-loader": "^0.10.7",
+    "@graphql-toolkit/json-file-loader": "^0.10.7",
+    "@graphql-toolkit/url-loader": "^0.10.7",
     "@types/minimist": "^1.2.0",
     "minimist": "^1.2.5"
   },
