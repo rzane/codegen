@@ -550,13 +550,13 @@
     upper-case "2.0.1"
 
 "@graphql-codegen/schema-ast@^1.13.4":
-  version "1.13.5"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/schema-ast/-/schema-ast-1.13.5.tgz#4a09793874f2d875c589df665096609b20aa1bd2"
-  integrity sha512-nxT6ldStPJSFFtO66HzG4BH0bTEtTllM489Al6eulET4+6wEbzEV3KvydI26C1lo42/WqDX3r4wpMgI8ZVQQGg==
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/schema-ast/-/schema-ast-1.14.0.tgz#5fdee0fcf381d99785917fd024b19e6b6596c24d"
+  integrity sha512-iWAQnY8sDuxk2ouSzgNiXppNJQ5BnyqC4JmNvQMLHBE+9vjC5XGM1y5Qu6ib+76mbZSU5wc6aMi0e3HgSoabPA==
   dependencies:
-    "@graphql-codegen/plugin-helpers" "1.13.5"
+    "@graphql-codegen/plugin-helpers" "1.14.0"
     "@graphql-toolkit/common" "~0.10.4"
-    tslib "~1.11.1"
+    tslib "~2.0.0"
 
 "@graphql-codegen/typescript-operations@^1.13.4":
   version "1.13.5"
@@ -4554,11 +4554,6 @@ ts-node@^8.10.1:
     make-error "^1.1.1"
     source-map-support "^0.5.17"
     yn "3.1.1"
-
-tslib@1.11.1:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
-  integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
 
 tslib@1.11.2, tslib@^1.10.0, tslib@^1.11.1, tslib@^1.9.3, tslib@~1.11.1:
   version "1.11.2"
