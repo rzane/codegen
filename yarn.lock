@@ -507,14 +507,14 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@graphql-codegen/core@^1.15.0":
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/core/-/core-1.15.0.tgz#d2bdd86746dda0d84f0a01e6c7845d24c51fcec6"
-  integrity sha512-+PdIqZ1bgjKUdVRmJoEkgHs2xHzKWlom2rb8UJs0m0ARfe0vAlJdFnMUNSsgPLnJN5nB8n0wd/SEDfPFEB1XHA==
+"@graphql-codegen/core@^1.15.1":
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/core/-/core-1.15.1.tgz#a14d3c8a0100e0aa90df98673f67ae232ec1e0e3"
+  integrity sha512-LxtAFtKECkZPZeapIbUW8SSAxO9yRyIsYpg1+1gnv4GZw/0j6johXJ5Ms64Q6dZt69oMMYUIWmwNcGa/ccRILA==
   dependencies:
-    "@graphql-codegen/plugin-helpers" "1.15.0"
-    "@graphql-tools/merge" "6.0.1"
-    "@graphql-tools/utils" "6.0.1"
+    "@graphql-codegen/plugin-helpers" "1.15.1"
+    "@graphql-tools/merge" "^6.0.0"
+    "@graphql-tools/utils" "^6.0.0"
     tslib "~2.0.0"
 
 "@graphql-codegen/plugin-helpers@1.15.0":
@@ -677,13 +677,13 @@
     tslib "1.11.2"
     valid-url "1.0.9"
 
-"@graphql-tools/merge@6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/merge/-/merge-6.0.1.tgz#2ce4efe5f541b7ea34b80e94e546dd4b99dde274"
-  integrity sha512-kQFAoF3N8KXUhY0uEbdM5qAIrDvrWiPIuFktvbYMyJMU2K0xMiAokNDNYACBZ+UOC8aRUIismjB2/ylKqefU3Q==
+"@graphql-tools/merge@^6.0.0":
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/merge/-/merge-6.0.7.tgz#51e501f1981a0526486cf72ef74dac055b2eb222"
+  integrity sha512-K7efEQbq8l69srWYxNfWRwQjTZOTGxx2K2WLIunLbrQU6IxBXLobmW8LwMYtMK34HowVEkW+NKy4l8FxJmQX9w==
   dependencies:
-    "@graphql-tools/schema" "6.0.1"
-    "@graphql-tools/utils" "6.0.1"
+    "@graphql-tools/schema" "6.0.7"
+    "@graphql-tools/utils" "6.0.7"
     tslib "~2.0.0"
 
 "@graphql-tools/relay-operation-optimizer@6.0.1":
@@ -702,12 +702,12 @@
     "@graphql-tools/utils" "6.0.6"
     relay-compiler "9.1.0"
 
-"@graphql-tools/schema@6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/schema/-/schema-6.0.1.tgz#7464982c866e2b772976d6d97a4ce7f72f93cbb0"
-  integrity sha512-/X9Uji9BCulP5vx69pLD6TcmETRKl71qVAZbNUEURklpU3kty8zrCqs6gqO2nz4nEJzYRrXFTMf+zZ6L7Ae3ew==
+"@graphql-tools/schema@6.0.7":
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/schema/-/schema-6.0.7.tgz#53549f29b626b2d0657a8ce2e9c4edecc249e815"
+  integrity sha512-10BptaXzNh6idEfmx75Y+hmxbtwvG+yB47bAC4JrOL+vy4PZ9wUvCn2IXfHdwXUx4CnU4qvMS8tosUdgYyJ4ag==
   dependencies:
-    "@graphql-tools/utils" "6.0.1"
+    "@graphql-tools/utils" "6.0.7"
     tslib "~2.0.0"
 
 "@graphql-tools/utils@6.0.1":
@@ -724,7 +724,7 @@
   dependencies:
     camel-case "4.1.1"
 
-"@graphql-tools/utils@^6.0.0":
+"@graphql-tools/utils@6.0.7", "@graphql-tools/utils@^6.0.0":
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-6.0.7.tgz#0dc8837988b04961162bb76741bfa1072a03418c"
   integrity sha512-ij/ohAg/PBWx8JHKNQO7PMuABDUGICFbpaJHCe1OB5q4lGmpwlJXI1jJ6JjAKN8+FX0fc1TPh7zY/ScJ8/dXgg==
