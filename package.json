@@ -29,7 +29,7 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "@graphql-codegen/core": "^1.15.2",
+    "@graphql-codegen/core": "^1.15.3",
     "@graphql-codegen/typescript": "^1.15.2",
     "@graphql-codegen/typescript-operations": "^1.15.1",
     "@graphql-codegen/typescript-react-apollo": "^1.15.2",
