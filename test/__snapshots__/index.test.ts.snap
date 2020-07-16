@@ -5,6 +5,7 @@ exports[`generates code 1`] = `
 import * as ApolloReactCommon from '@apollo/react-common';
 import * as ApolloReactHooks from '@apollo/react-hooks';
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -44,16 +45,16 @@ export type QueryPostArgs = {
   id: Scalars['ID'];
 };
 
-export type PostVariables = {
+export type PostVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type Post = { __typename?: 'Query', post?: Maybe<{ __typename?: 'Post', id: string, title: string }> };
 
-export type CreatePostVariables = {
+export type CreatePostVariables = Exact<{
   data: PostInput;
-};
+}>;
 
 
 export type CreatePost = { __typename?: 'Mutation', createPost?: Maybe<{ __typename?: 'Post', id: string, title: string }> };
