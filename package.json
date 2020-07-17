@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.4",
-    "graphql": "^14.7.0",
+    "graphql": "^15.3.0",
     "graphql-tag": "^2.10.4",
     "jest": "^26.1.0",
     "ts-jest": "^26.1.3",
