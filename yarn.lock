@@ -512,31 +512,15 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@graphql-codegen/core@^1.17.2":
-  version "1.17.2"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/core/-/core-1.17.2.tgz#8e592928b53998cbb2195424edcf0b1dad28d87f"
-  integrity sha512-dyHkZf8wDlhkFP+Y6fvi2fsgqPXVz+21aFn+AQx9I7dEOHMjKaqOgYMKFeuq+M6o+6OX8J3h84yeL/QLp43kEg==
+"@graphql-codegen/core@^1.17.3":
+  version "1.17.3"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/core/-/core-1.17.3.tgz#6b919c0be72f5ada5731f0f368e3d19943dca29d"
+  integrity sha512-xtu2T/GjqSx6Cgv1nTeniHwNGmR8LBlDqpIDjsurVCJC9i62zStymI94I/O8jtrCGhyVgYpbeFS4sLM/mQH83A==
   dependencies:
-    "@graphql-codegen/plugin-helpers" "1.17.2"
+    "@graphql-codegen/plugin-helpers" "1.17.3"
     "@graphql-tools/merge" "^6.0.0"
     "@graphql-tools/utils" "^6.0.0"
     tslib "~2.0.0"
-
-"@graphql-codegen/plugin-helpers@1.17.2":
-  version "1.17.2"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.17.2.tgz#04a4969e553fb6c4a35c6673701aea6253123058"
-  integrity sha512-n7UZCiYA92Ep0kNVFpy/Wl7b58ub1DWY1EURHeS6lW0Klebg8q7E9nCBoPjYp8TWb20vfw4NpnK27CQ+/o7brA==
-  dependencies:
-    "@graphql-tools/utils" "^6.0.0"
-    camel-case "4.1.1"
-    common-tags "1.8.0"
-    constant-case "3.0.3"
-    import-from "3.0.0"
-    lower-case "2.0.1"
-    param-case "3.0.3"
-    pascal-case "3.1.1"
-    tslib "~2.0.0"
-    upper-case "2.0.1"
 
 "@graphql-codegen/plugin-helpers@1.17.3":
   version "1.17.3"
