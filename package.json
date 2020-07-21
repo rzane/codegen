@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@graphql-codegen/core": "^1.17.2",
-    "@graphql-codegen/typescript": "^1.17.1",
+    "@graphql-codegen/typescript": "^1.17.3",
     "@graphql-codegen/typescript-operations": "^1.17.1",
     "@graphql-codegen/typescript-react-apollo": "^1.17.1",
     "@graphql-toolkit/core": "^0.10.7",
