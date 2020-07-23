@@ -512,12 +512,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@graphql-codegen/core@^1.17.3":
-  version "1.17.3"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/core/-/core-1.17.3.tgz#6b919c0be72f5ada5731f0f368e3d19943dca29d"
-  integrity sha512-xtu2T/GjqSx6Cgv1nTeniHwNGmR8LBlDqpIDjsurVCJC9i62zStymI94I/O8jtrCGhyVgYpbeFS4sLM/mQH83A==
+"@graphql-codegen/core@^1.17.4":
+  version "1.17.4"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/core/-/core-1.17.4.tgz#318dcbf2e8d59296ee232107281973f683b4830d"
+  integrity sha512-LNkUub1zbQkkRznpugQBjEhWXbNmctduakBgFfAFgVAATsD2T4Nfpo4d4Tb8+g2O6FsMqvhaf0ZkVr16otlasA==
   dependencies:
-    "@graphql-codegen/plugin-helpers" "1.17.3"
+    "@graphql-codegen/plugin-helpers" "1.17.4"
     "@graphql-tools/merge" "^6.0.0"
     "@graphql-tools/utils" "^6.0.0"
     tslib "~2.0.0"
@@ -532,6 +532,23 @@
     common-tags "1.8.0"
     constant-case "3.0.3"
     import-from "3.0.0"
+    lower-case "2.0.1"
+    param-case "3.0.3"
+    pascal-case "3.1.1"
+    tslib "~2.0.0"
+    upper-case "2.0.1"
+
+"@graphql-codegen/plugin-helpers@1.17.4":
+  version "1.17.4"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.17.4.tgz#720fcd31126b0d2af6f820414ec88e4e6c230d79"
+  integrity sha512-7fycmjHZBhlHgHPzxJdEdB33cBSfmtqe7biS9HW6EtArvcG0rFXtDlA+nwKEdO7O39XfnR83A8FJkMw6x0h/gg==
+  dependencies:
+    "@graphql-tools/utils" "^6.0.0"
+    camel-case "4.1.1"
+    common-tags "1.8.0"
+    constant-case "3.0.3"
+    import-from "3.0.0"
+    lodash "~4.17.15"
     lower-case "2.0.1"
     param-case "3.0.3"
     pascal-case "3.1.1"
@@ -3270,6 +3287,11 @@ lodash@4.17.15, lodash@^4.17.13, lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+
+lodash@~4.17.15:
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 loose-envify@^1.0.0:
   version "1.4.0"
