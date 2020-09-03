@@ -41,7 +41,7 @@
     "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.12",
+    "@types/jest": "^26.0.13",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
     "jest": "^26.4.2",
