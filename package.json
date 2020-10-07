@@ -28,6 +28,9 @@
     "preset": "ts-jest",
     "testEnvironment": "node"
   },
+  "peerDependencies": {
+    "@apollo/client": "^3.0.0"
+  },
   "dependencies": {
     "@graphql-codegen/core": "^1.17.8",
     "@graphql-codegen/typescript": "^1.17.10",
