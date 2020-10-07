@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`generates code 1`] = `
-"import gql from 'graphql-tag';
-import * as ApolloReactCommon from '@apollo/react-common';
-import * as ApolloReactHooks from '@apollo/react-hooks';
+"import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -85,15 +84,15 @@ export const PostDocument = gql\`
  *   },
  * });
  */
-export function usePost(baseOptions?: ApolloReactHooks.QueryHookOptions<Post, PostVariables>) {
-        return ApolloReactHooks.useQuery<Post, PostVariables>(PostDocument, baseOptions);
+export function usePost(baseOptions?: Apollo.QueryHookOptions<Post, PostVariables>) {
+        return Apollo.useQuery<Post, PostVariables>(PostDocument, baseOptions);
       }
-export function usePostLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Post, PostVariables>) {
-          return ApolloReactHooks.useLazyQuery<Post, PostVariables>(PostDocument, baseOptions);
+export function usePostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Post, PostVariables>) {
+          return Apollo.useLazyQuery<Post, PostVariables>(PostDocument, baseOptions);
         }
 export type PostHookResult = ReturnType<typeof usePost>;
 export type PostLazyQueryHookResult = ReturnType<typeof usePostLazyQuery>;
-export type PostQueryResult = ApolloReactCommon.QueryResult<Post, PostVariables>;
+export type PostQueryResult = Apollo.QueryResult<Post, PostVariables>;
 export const CreatePostDocument = gql\`
     mutation CreatePost($data: PostInput!) {
   createPost(data: $data) {
@@ -102,7 +101,7 @@ export const CreatePostDocument = gql\`
   }
 }
     \`;
-export type CreatePostMutationFn = ApolloReactCommon.MutationFunction<CreatePost, CreatePostVariables>;
+export type CreatePostMutationFn = Apollo.MutationFunction<CreatePost, CreatePostVariables>;
 
 /**
  * __useCreatePost__
@@ -121,10 +120,10 @@ export type CreatePostMutationFn = ApolloReactCommon.MutationFunction<CreatePost
  *   },
  * });
  */
-export function useCreatePost(baseOptions?: ApolloReactHooks.MutationHookOptions<CreatePost, CreatePostVariables>) {
-        return ApolloReactHooks.useMutation<CreatePost, CreatePostVariables>(CreatePostDocument, baseOptions);
+export function useCreatePost(baseOptions?: Apollo.MutationHookOptions<CreatePost, CreatePostVariables>) {
+        return Apollo.useMutation<CreatePost, CreatePostVariables>(CreatePostDocument, baseOptions);
       }
 export type CreatePostHookResult = ReturnType<typeof useCreatePost>;
-export type CreatePostMutationResult = ApolloReactCommon.MutationResult<CreatePost>;
-export type CreatePostMutationOptions = ApolloReactCommon.BaseMutationOptions<CreatePost, CreatePostVariables>;"
+export type CreatePostMutationResult = Apollo.MutationResult<CreatePost>;
+export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePost, CreatePostVariables>;"
 `;

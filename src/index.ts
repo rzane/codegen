@@ -52,11 +52,10 @@ export const generate = async (opts: Options): Promise<Result> => {
       typescriptReactApollo,
     },
     config: {
-      withComponent: false,
-      withHOC: false,
-      withHooks: true,
+      strict: true,
       noNamespaces: true,
       preResolveTypes: true,
+      reactApolloVersion: 3,
       omitOperationSuffix: !suffix,
       immutableTypes: immutable,
       scalars: {
