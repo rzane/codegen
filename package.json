@@ -35,7 +35,7 @@
     "@graphql-codegen/core": "^1.17.8",
     "@graphql-codegen/typescript": "^1.17.11",
     "@graphql-codegen/typescript-operations": "^1.17.9",
-    "@graphql-codegen/typescript-react-apollo": "^2.0.7",
+    "@graphql-codegen/typescript-react-apollo": "^2.1.0",
     "@graphql-toolkit/core": "^0.10.7",
     "@graphql-toolkit/graphql-file-loader": "^0.10.7",
     "@graphql-toolkit/json-file-loader": "^0.10.7",
