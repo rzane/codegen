@@ -84,7 +84,7 @@ export const PostDocument = gql\`
  *   },
  * });
  */
-export function usePost(baseOptions?: Apollo.QueryHookOptions<Post, PostVariables>) {
+export function usePost(baseOptions: Apollo.QueryHookOptions<Post, PostVariables>) {
         return Apollo.useQuery<Post, PostVariables>(PostDocument, baseOptions);
       }
 export function usePostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Post, PostVariables>) {
