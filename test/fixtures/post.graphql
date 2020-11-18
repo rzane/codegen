@@ -1,0 +1,4 @@
+fragment PostFragment on Post {
+  id
+  title
+}
