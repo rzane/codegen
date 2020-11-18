@@ -1,9 +1,9 @@
 import { parse, printSchema } from "graphql";
 import { codegen } from "@graphql-codegen/core";
-import { loadSchema, loadDocuments } from "@graphql-toolkit/core";
-import { UrlLoader } from "@graphql-toolkit/url-loader";
-import { JsonFileLoader } from "@graphql-toolkit/json-file-loader";
-import { GraphQLFileLoader } from "@graphql-toolkit/graphql-file-loader";
+import { loadSchema, loadDocuments } from "@graphql-tools/load";
+import { UrlLoader } from "@graphql-tools/url-loader";
+import { JsonFileLoader } from "@graphql-tools/json-file-loader";
+import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import * as typescript from "@graphql-codegen/typescript";
 import * as typescriptOperations from "@graphql-codegen/typescript-operations";
 import * as typescriptReactApollo from "@graphql-codegen/typescript-react-apollo";
