@@ -43,6 +43,17 @@ test("generates code and write to a file", async () => {
   expect(writeFile).toHaveBeenCalledTimes(2);
 });
 
+test("generates code and write to a file", async () => {
+  const log = jest.fn();
+  const mkdir = jest.spyOn(fs, "mkdir");
+  const writeFile = jest.spyOn(fs, "writeFile");
+
+  await execute([root, "--schema", schema, "-c", "react-query"], {}, log);
+
+  expect(mkdir).toHaveBeenCalledTimes(1);
+  expect(writeFile).toHaveBeenCalledTimes(2);
+});
+
 test("generates code using a schema specified by env", async () => {
   const log = jest.fn();
   const mkdir = jest.spyOn(fs, "mkdir");

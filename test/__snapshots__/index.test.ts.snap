@@ -411,6 +411,112 @@ export type CreatePostMutationResult = Apollo.MutationResult<CreatePost>;
 export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePost, CreatePostVariables>;"
 `;
 
+exports[`generates code with react-query 1`] = `
+"import { useQuery, UseQueryOptions, useMutation, UseMutationOptions } from 'react-query';
+import { execute } from './client';
+export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+/** All built-in and custom scalars, mapped to their actual values */
+export type Scalars = {
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createPost?: Maybe<Post>;
+};
+
+
+export type MutationCreatePostArgs = {
+  data: PostInput;
+};
+
+export type Post = {
+  __typename?: 'Post';
+  id: Scalars['ID'];
+  title: Scalars['String'];
+};
+
+export type PostInput = {
+  title: Scalars['String'];
+};
+
+export type Query = {
+  __typename?: 'Query';
+  post?: Maybe<Post>;
+};
+
+
+export type QueryPostArgs = {
+  id: Scalars['ID'];
+};
+
+export type PostVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type Post = { __typename?: 'Query', post?: Maybe<(
+    { __typename?: 'Post' }
+    & PostFragment
+  )> };
+
+export type PostFragment = { __typename?: 'Post', id: string, title: string };
+
+export type CreatePostVariables = Exact<{
+  data: PostInput;
+}>;
+
+
+export type CreatePost = { __typename?: 'Mutation', createPost?: Maybe<{ __typename?: 'Post', id: string, title: string }> };
+
+export const PostFragment = \`
+    fragment PostFragment on Post {
+  id
+  title
+}
+    \`;
+export const PostDocument = \`
+    query Post($id: ID!) {
+  post(id: $id) {
+    ...PostFragment
+  }
+}
+    \${PostFragment}\`;
+export const usePost = <
+      TData = Post,
+      TError = unknown
+    >(
+      variables: PostVariables, 
+      options?: UseQueryOptions<Post, TError, TData>
+    ) => 
+    useQuery<Post, TError, TData>(
+      ['Post', variables],
+      execute<Post, PostVariables>(PostDocument, variables),
+      options
+    );
+export const CreatePostDocument = \`
+    mutation CreatePost($data: PostInput!) {
+  createPost(data: $data) {
+    id
+    title
+  }
+}
+    \`;
+export const useCreatePost = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<CreatePost, TError, CreatePostVariables, TContext>) => 
+    useMutation<CreatePost, TError, CreatePostVariables, TContext>(
+      (variables?: CreatePostVariables) => execute<CreatePost, CreatePostVariables>(CreatePostDocument, variables)(),
+      options
+    );"
+`;
+
 exports[`generates code without suffix by default 1`] = `
 "import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';

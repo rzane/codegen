@@ -19,6 +19,14 @@ test("generates code", async () => {
   expect(code).toMatchSnapshot();
 });
 
+test("generates code with react-query", async () => {
+  const opts = makeOptions({ client: "react-query" });
+
+  const { code } = await generate(opts);
+  expect(code).toContain("import { execute } from './client';");
+  expect(code).toMatchSnapshot();
+});
+
 test("generate code with immutability", async () => {
   const opts = makeOptions({ immutable: true });
   const { code } = await generate(opts);

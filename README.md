@@ -18,12 +18,30 @@ A zero-config CLI tool to generate GraphQL type definitions and React Hooks. It'
 
     Generate type definitions from GraphQL queries.
 
+    Arguments:
+      ROOT (required)
+        The directory where your GraphQL queries live.
+
     Options:
-      -s, --schema <SCHEMA>  URL or file path to a GraphQL schema
-      --suffix               append suffix (e.g. Mutation, Query)
-      --immutable            generate readonly types
-      -v, --version          output the version number
-      -h, --help             display help for command
+      -s, --schema <SCHEMA> (required)
+        URL or file path to a GraphQL schema. This option will be overridden
+        when the SCHEMA environment variable is set.
+
+      -c, --client <react-query|react-apollo> (default: react-apollo)
+        The preferred GraphQL client.
+
+      --suffix
+        Append a suffix to operations (e.g. usePersonQuery). This
+        is helpful for avoiding naming collisions.
+
+      --immutable
+        Generate readonly types.
+
+      -v, --version
+        Output the version number
+
+      -h, --help
+        Display this help information
 
 ## Usage
 

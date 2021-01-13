@@ -9,29 +9,48 @@ const help = `Usage: codegen [ROOT] [options]
 
 Generate type definitions from GraphQL queries.
 
-Options:
-  -s, --schema <SCHEMA>  URL or file path to a GraphQL schema
-  --suffix               append suffix (e.g. Mutation, Query)
-  --immutable            generate readonly types
-  -v, --version          output the version number
-  -h, --help             display help for command`;
+Arguments:
+  ROOT (required)
+    The directory where your GraphQL queries live.
 
-export const execute = async (
+Options:
+  -s, --schema <SCHEMA> (required)
+    URL or file path to a GraphQL schema. This option will be overridden
+    when the SCHEMA environment variable is set.
+
+  -c, --client <react-query|react-apollo> (default: react-apollo)
+    The preferred GraphQL client.
+
+  --suffix
+    Append a suffix to operations (e.g. usePersonQuery). This
+    is helpful for avoiding naming collisions.
+
+  --immutable
+    Generate readonly types.
+
+  -v, --version
+    Output the version number
+
+  -h, --help
+    Display this help information`;
+
+export async function execute(
   argv: string[],
   env: Record<string, string | undefined>,
   log: (message: string) => void
-): Promise<void> => {
+): Promise<void> {
   const opts = parse(argv);
   const [root] = opts._;
-  const schema = env.SCHEMA || opts.schema;
-
-  if (opts.h || opts.help) {
-    return log(help);
-  }
+  const schema = env.SCHEMA || opts.schema || opts.s;
+  const client = opts.client || opts.c;
 
   if (opts.v || opts.version) {
     const pkg = require("../package.json");
     return log(pkg.version);
+  }
+
+  if (opts.h || opts.help) {
+    return log(help);
   }
 
   if (!root) {
@@ -50,6 +69,7 @@ export const execute = async (
     input,
     output,
     schema,
+    client,
     suffix: Boolean(opts.suffix),
     immutable: Boolean(opts.immutable),
   });
@@ -57,7 +77,7 @@ export const execute = async (
   await fs.mkdir(root, { recursive: true });
   await fs.writeFile(output, result.code);
   await fs.writeFile(schemaOutput, result.schema);
-};
+}
 
 /**
  * If this file is invoked as an executable, run the program.

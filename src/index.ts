@@ -7,11 +7,13 @@ import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import * as typescript from "@graphql-codegen/typescript";
 import * as typescriptOperations from "@graphql-codegen/typescript-operations";
 import * as typescriptReactApollo from "@graphql-codegen/typescript-react-apollo";
+import * as typescriptReactQuery from "@graphql-codegen/typescript-react-query";
 
 export interface Options {
   input: string;
   output: string;
   schema: string;
+  client?: string;
   suffix?: boolean;
   immutable?: boolean;
 }
@@ -21,10 +23,22 @@ export interface Result {
   code: string;
 }
 
+function getClient(opts: Options): [string, any, object] {
+  if (opts.client === "react-query") {
+    return [
+      "typescriptReactQuery",
+      typescriptReactQuery,
+      { fetcher: "./client#execute" },
+    ];
+  }
+
+  return ["typescriptReactApollo", typescriptReactApollo, {}];
+}
+
 /**
  * Generate code and return it as a string.
  */
-export const generate = async (opts: Options): Promise<Result> => {
+export async function generate(opts: Options): Promise<Result> {
   const schemaAst = await loadSchema(opts.schema, {
     loaders: [new UrlLoader(), new JsonFileLoader(), new GraphQLFileLoader()],
   });
@@ -35,6 +49,7 @@ export const generate = async (opts: Options): Promise<Result> => {
 
   const schema = printSchema(schemaAst);
   const { suffix = false, immutable = false } = opts;
+  const [clientName, clientPlugin, clientConfig] = getClient(opts);
 
   const code = await codegen({
     filename: opts.output,
@@ -44,12 +59,12 @@ export const generate = async (opts: Options): Promise<Result> => {
     plugins: [
       { typescript: {} },
       { typescriptOperations: {} },
-      { typescriptReactApollo: {} },
+      { [clientName]: {} },
     ],
     pluginMap: {
       typescript,
       typescriptOperations,
-      typescriptReactApollo,
+      [clientName]: clientPlugin,
     },
     config: {
       strict: true,
@@ -64,8 +79,9 @@ export const generate = async (opts: Options): Promise<Result> => {
         Time: "string",
         JSON: "{ [key: string]: any }",
       },
+      ...clientConfig,
     },
   });
 
   return { schema, code };
-};
+}
