@@ -4,11 +4,9 @@ import { execute } from "../src/cli";
 
 const { version } = require("../package.json");
 const root = join(__dirname, "fixtures");
-const output = join(root, "index.ts");
 const schema = join(root, "schema.graphql");
 
 beforeEach(() => jest.resetAllMocks());
-beforeEach(() => fs.unlink(output).catch(() => {}));
 
 test("--version", async () => {
   const log = jest.fn();
@@ -43,15 +41,16 @@ test("generates code and write to a file", async () => {
   expect(writeFile).toHaveBeenCalledTimes(2);
 });
 
-test("generates code and write to a file", async () => {
+test("generates code for react-query and write to a file", async () => {
   const log = jest.fn();
   const mkdir = jest.spyOn(fs, "mkdir");
   const writeFile = jest.spyOn(fs, "writeFile");
 
-  await execute([root, "--schema", schema, "-c", "react-query"], {}, log);
+  const args = [root, "--schema", schema, "-c", "react-query"];
+  await execute(args, {}, log);
 
   expect(mkdir).toHaveBeenCalledTimes(1);
-  expect(writeFile).toHaveBeenCalledTimes(2);
+  expect(writeFile).toHaveBeenCalledTimes(3);
 });
 
 test("generates code using a schema specified by env", async () => {

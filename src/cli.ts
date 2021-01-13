@@ -4,6 +4,8 @@ import parse from "minimist";
 import { join } from "path";
 import { promises as fs } from "fs";
 import { generate } from "./index";
+import { exists } from "./exists";
+import { clientTemplate } from "./templates";
 
 const help = `Usage: codegen [ROOT] [options]
 
@@ -75,8 +77,22 @@ export async function execute(
   });
 
   await fs.mkdir(root, { recursive: true });
+
+  log(`write ${output}`);
   await fs.writeFile(output, result.code);
+
+  log(`write ${schemaOutput}`);
   await fs.writeFile(schemaOutput, result.schema);
+
+  if (client === "react-query") {
+    const clientPath = join(root, "client.ts");
+    const clientExists = await exists(clientPath);
+
+    if (!clientExists) {
+      log(`write ${clientPath}`);
+      await fs.writeFile(clientPath, clientTemplate);
+    }
+  }
 }
 
 /**

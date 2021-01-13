@@ -64,3 +64,15 @@ Now, you have code!
         schema.graphql <- This file contains your GraphQL schema
         posts.graphql
         users.graphql
+
+## Supported Clients
+
+#### [`react-apollo`](https://www.apollographql.com/docs/react/)
+
+This is the default client. It'll just work out of the box.
+
+#### [`react-query`](https://github.com/tannerlinsley/react-query)
+
+To generate code for use with `react-query`, you'll need to run the command with `--client react-query`.
+
+This will also create a file `client.ts` if it does not exist. You should feel free to edit this file.
