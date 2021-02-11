@@ -1,87 +1,101 @@
-import { parse, printSchema } from "graphql";
-import { codegen } from "@graphql-codegen/core";
-import { loadSchema, loadDocuments } from "@graphql-tools/load";
-import { UrlLoader } from "@graphql-tools/url-loader";
-import { JsonFileLoader } from "@graphql-tools/json-file-loader";
-import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
-import * as typescript from "@graphql-codegen/typescript";
-import * as typescriptOperations from "@graphql-codegen/typescript-operations";
-import * as typescriptReactApollo from "@graphql-codegen/typescript-react-apollo";
-import * as typescriptReactQuery from "@graphql-codegen/typescript-react-query";
+#!/usr/bin/env node
 
-export interface Options {
-  input: string;
-  output: string;
-  schema: string;
-  client?: string;
-  suffix?: boolean;
-  immutable?: boolean;
-}
+import parse from "minimist";
+import { join } from "path";
+import { promises as fs } from "fs";
+import { generate } from "@graphql-codegen/cli";
+import { exists } from "./exists";
+import { clientTemplate } from "./templates";
+import { build } from "./config";
 
-export interface Result {
-  schema: string;
-  code: string;
-}
+const help = `Usage: codegen [ROOT] [options]
 
-function getClient(opts: Options): [string, any, object] {
-  if (opts.client === "react-query") {
-    return [
-      "typescriptReactQuery",
-      typescriptReactQuery,
-      { fetcher: "./client#execute" },
-    ];
+Generate type definitions from GraphQL queries.
+
+Arguments:
+  ROOT (required)
+    The directory where your GraphQL queries live.
+
+Options:
+  -s, --schema <SCHEMA> (required)
+    URL or file path to a GraphQL schema. This option will be overridden
+    when the SCHEMA environment variable is set.
+
+  -c, --client <react-query|react-apollo> (default: react-apollo)
+    The preferred GraphQL client.
+
+  --suffix
+    Append a suffix to operations (e.g. usePersonQuery). This
+    is helpful for avoiding naming collisions.
+
+  --immutable
+    Generate readonly types.
+
+  -v, --version
+    Output the version number
+
+  -h, --help
+    Display this help information`;
+
+export async function execute(
+  argv: string[],
+  env: Record<string, string | undefined>
+): Promise<void> {
+  const opts = parse(argv);
+  const [root] = opts._;
+  const schema = env.SCHEMA || opts.schema || opts.s;
+  const client = opts.client || opts.c || "react-apollo";
+
+  if (opts.v || opts.version) {
+    const pkg = require("../package.json");
+    return console.log(pkg.version);
   }
 
-  return ["typescriptReactApollo", typescriptReactApollo, {}];
+  if (opts.h || opts.help) {
+    return console.log(help);
+  }
+
+  if (!root) {
+    throw new Error("Missing argument: ROOT");
+  }
+
+  if (!schema) {
+    throw new Error("Missing option: --schema");
+  }
+
+  const config = build({
+    root,
+    schema,
+    client,
+    suffix: Boolean(opts.suffix),
+    immutable: Boolean(opts.suffix),
+  });
+
+  await generate(config);
+
+  if (client === "react-query") {
+    const clientPath = join(root, "client.ts");
+    const clientExists = await exists(clientPath);
+
+    if (!clientExists) {
+      await fs.writeFile(clientPath, clientTemplate);
+    }
+  }
 }
 
 /**
- * Generate code and return it as a string.
+ * If this file is invoked as an executable, run the program.
  */
-export async function generate(opts: Options): Promise<Result> {
-  const schemaAst = await loadSchema(opts.schema, {
-    loaders: [new UrlLoader(), new JsonFileLoader(), new GraphQLFileLoader()],
+if (require.main === module) {
+  execute(process.argv.slice(2), process.env).catch((error) => {
+    if (process.env.DEBUG) {
+      console.error(error);
+    } else if (error.code) {
+      console.error(`${error.code}: ${error.message}`);
+    } else {
+      console.error(error.message);
+    }
+
+    process.exit(1);
   });
-
-  const documents = await loadDocuments(opts.input, {
-    loaders: [new GraphQLFileLoader()],
-  });
-
-  const schema = printSchema(schemaAst);
-  const { suffix = false, immutable = false } = opts;
-  const [clientName, clientPlugin, clientConfig] = getClient(opts);
-
-  const code = await codegen({
-    filename: opts.output,
-    schema: parse(schema),
-    schemaAst,
-    documents,
-    plugins: [
-      { typescript: {} },
-      { typescriptOperations: {} },
-      { [clientName]: {} },
-    ],
-    pluginMap: {
-      typescript,
-      typescriptOperations,
-      [clientName]: clientPlugin,
-    },
-    config: {
-      strict: true,
-      noNamespaces: true,
-      preResolveTypes: true,
-      reactApolloVersion: 3,
-      omitOperationSuffix: !suffix,
-      immutableTypes: immutable,
-      scalars: {
-        DateTime: "string",
-        Date: "string",
-        Time: "string",
-        JSON: "{ [key: string]: any }",
-      },
-      ...clientConfig,
-    },
-  });
-
-  return { schema, code };
 }

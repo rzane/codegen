@@ -7,10 +7,10 @@
   "scripts": {
     "test": "jest",
     "prepack": "tsc -b",
-    "codegen": "ts-node src/cli.ts"
+    "codegen": "ts-node src"
   },
   "bin": {
-    "codegen": "lib/cli.js"
+    "codegen": "lib/index.js"
   },
   "files": [
     "lib/**/*"
@@ -29,18 +29,16 @@
     "testEnvironment": "node"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.0.0"
+    "prettier": "*"
   },
   "dependencies": {
+    "@graphql-codegen/cli": "^1.20.1",
     "@graphql-codegen/core": "^1.17.9",
-    "@graphql-codegen/typescript": "^1.20.2",
+    "@graphql-codegen/schema-ast": "^1.18.1",
+    "@graphql-codegen/typescript": "^1.21.0",
     "@graphql-codegen/typescript-operations": "^1.17.14",
     "@graphql-codegen/typescript-react-apollo": "^2.2.1",
-    "@graphql-codegen/typescript-react-query": "^1.1.0",
-    "@graphql-tools/graphql-file-loader": "^6.2.7",
-    "@graphql-tools/json-file-loader": "^6.2.6",
-    "@graphql-tools/load": "^6.2.5",
-    "@graphql-tools/url-loader": "^6.8.0",
+    "@graphql-codegen/typescript-react-query": "^1.2.0",
     "@types/minimist": "^1.2.1",
     "minimist": "^1.2.5"
   },
@@ -49,8 +47,9 @@
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
     "jest": "^26.6.3",
-    "ts-jest": "^26.5.0",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.1",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.3"
+    "typescript": "^4.1.5"
   }
 }
