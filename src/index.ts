@@ -72,7 +72,7 @@ export async function execute(
     client,
     suffix: Boolean(opts.suffix),
     immutable: Boolean(opts.suffix),
-    colocate: Boolean(opts.colocate),
+    colocate: opts.colocate,
   });
 
   await generate(config);

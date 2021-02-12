@@ -7,7 +7,7 @@ export interface Options {
   client: string;
   suffix: boolean;
   immutable: boolean;
-  colocate: boolean;
+  colocate: string | undefined;
 }
 
 const HOOKS = {
@@ -72,8 +72,8 @@ function buildDefault(opts: Options): Types.Config {
 }
 
 function buildColocate(opts: Options): Types.Config {
-  const types = join(opts.root, "queries/index.ts");
-  const schemaOutput = join(opts.root, "queries/schema.graphql");
+  const types = join(opts.colocate!, "index.ts");
+  const schemaOutput = join(opts.colocate!, "schema.graphql");
   const documents = join(opts.root, "**/!(schema).graphql");
 
   return {

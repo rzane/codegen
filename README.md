@@ -37,7 +37,7 @@ A zero-config CLI tool to generate GraphQL type definitions and React Hooks. It'
       --immutable
         Generate readonly types.
 
-      --colocate
+      --colocate <common path>
         Generate files adjacent to their GraphQL source.
 
       -v, --version
@@ -80,7 +80,7 @@ What if you want your queries to live next to your components?
 
 Run the code generator:
 
-    $ yarn codegen src --schema http://localhost:3000/graphql
+    $ yarn codegen src --colocate src/queries --schema http://localhost:3000/graphql
 
 Now, your file tree should look like this:
 

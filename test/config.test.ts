@@ -12,7 +12,7 @@ const defaults: Options = {
   client: "react-apollo",
   immutable: false,
   suffix: false,
-  colocate: false,
+  colocate: undefined,
 };
 
 test("build", () => {
@@ -75,17 +75,17 @@ test("build (client: react-query)", () => {
 });
 
 test("build (colocate)", () => {
-  expect(build({ ...defaults, colocate: true })).toEqual({
+  expect(build({ ...defaults, colocate: "colocate" })).toEqual({
     schema: "schema",
     documents: "root/**/!(schema).graphql",
     hooks: expect.objectContaining({
       afterAllFileWrite: ["prettier --write"],
     }),
     generates: {
-      "root/queries/schema.graphql": {
+      "colocate/schema.graphql": {
         plugins: ["schema-ast"],
       },
-      "root/queries/index.ts": {
+      "colocate/index.ts": {
         plugins: ["typescript"],
         config: {
           scalars,
