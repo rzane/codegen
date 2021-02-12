@@ -60,10 +60,36 @@ Now, you have code!
 
     src/
       queries/
-        index.ts       <- This module exports a bunch of typed React Hooks
+        index.ts       <- This module exports typed React Hooks
         schema.graphql <- This file contains your GraphQL schema
         posts.graphql
         users.graphql
+
+## Colocated Queries
+
+What if you want your queries to live next to your components?
+
+    src/
+      components/
+        User/
+          User.tsx
+          queries.graphql
+
+Run the code generator:
+
+    $ yarn codegen src --schema http://localhost:3000/graphql
+
+Now, your file tree should look like this:
+
+    src/
+      queries/
+        index.ts       <- This module exports your schema's types
+        schema.graphql <- This file contains your GraphQL schema
+      components/
+        User/
+          User.tsx
+          queries.graphql
+          queries.ts   <- This module exports typed React hooks
 
 ## Supported Clients
 
