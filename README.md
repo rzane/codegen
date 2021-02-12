@@ -37,6 +37,9 @@ A zero-config CLI tool to generate GraphQL type definitions and React Hooks. It'
       --immutable
         Generate readonly types.
 
+      --colocate
+        Generate files adjacent to their GraphQL source.
+
       -v, --version
         Output the version number
 
