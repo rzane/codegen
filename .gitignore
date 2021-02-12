@@ -1,4 +1,5 @@
 /lib/
 /node_modules/
-/test/fixtures/index.ts
 yarn-error.log
+
+examples/**/*.ts

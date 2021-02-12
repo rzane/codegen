@@ -1,4 +1,7 @@
-#import "./post.graphql"
+fragment PostFragment on Post {
+  id
+  title
+}
 
 query Post($id: ID!) {
   post(id: $id) {
