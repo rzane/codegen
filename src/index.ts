@@ -31,6 +31,9 @@ Options:
   --immutable
     Generate readonly types.
 
+  --colocate
+    Generate files adjacent to their GraphQL source.
+
   -v, --version
     Output the version number
 
@@ -69,6 +72,7 @@ export async function execute(
     client,
     suffix: Boolean(opts.suffix),
     immutable: Boolean(opts.suffix),
+    colocate: Boolean(opts.colocate),
   });
 
   await generate(config);

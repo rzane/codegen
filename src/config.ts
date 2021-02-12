@@ -7,52 +7,101 @@ export interface Options {
   client: string;
   suffix: boolean;
   immutable: boolean;
+  colocate: boolean;
 }
 
-export function build(opts: Options): Types.Config {
-  const { root, schema, suffix, immutable, client } = opts;
+const HOOKS = {
+  afterAllFileWrite: ["prettier --write"],
+  afterOneFileWrite: [],
+  afterStart: [],
+  beforeAllFileWrite: [],
+  beforeDone: [],
+  beforeOneFileWrite: [],
+  onError: [],
+  onWatchTriggered: [],
+};
 
-  const output = join(root, "index.ts");
-  const schemaOutput = join(root, "schema.graphql");
-  const documents = join(root, "**/!(schema).graphql");
+const SCALARS = {
+  DateTime: "string",
+  Date: "string",
+  Time: "string",
+};
+
+function configure(opts: Options, plugins: string[]): Types.ConfiguredOutput {
+  const config: Types.PluginConfig = {};
+
+  const typescript = plugins.includes("typescript");
+  const operations = plugins.includes("typescript-operations");
+  const apollo = plugins.includes("typescript-react-apollo");
+
+  if (typescript || operations) {
+    config.scalars = SCALARS;
+    config.preResolveTypes = true;
+    config.immutableTypes = opts.immutable;
+  }
+
+  if (operations) {
+    config.omitOperationSuffix = !opts.suffix;
+  }
+
+  if (apollo) {
+    config.reactApolloVersion = 3;
+  }
+
+  return { plugins, config };
+}
+
+function buildDefault(opts: Options): Types.Config {
+  const output = join(opts.root, "index.ts");
+  const schemaOutput = join(opts.root, "schema.graphql");
+  const documents = join(opts.root, "**/!(schema).graphql");
 
   return {
-    schema,
+    schema: opts.schema,
     documents,
-    hooks: {
-      afterAllFileWrite: ["prettier --write"],
-      afterOneFileWrite: [],
-      afterStart: [],
-      beforeAllFileWrite: [],
-      beforeDone: [],
-      beforeOneFileWrite: [],
-      onError: [],
-      onWatchTriggered: [],
-    },
+    hooks: HOOKS,
     generates: {
-      [schemaOutput]: {
-        plugins: ["schema-ast"],
-      },
-      [output]: {
-        plugins: [
-          "typescript",
-          "typescript-operations",
-          `typescript-${client}`,
-        ],
-        config: {
-          strict: true,
-          noNamespaces: true,
-          preResolveTypes: true,
-          reactApolloVersion: 3,
-          omitOperationSuffix: !suffix,
-          immutableTypes: immutable,
-          scalars: {
-            DateTime: "string",
-            Date: "string",
-            Time: "string",
-          },
+      [schemaOutput]: { plugins: ["schema-ast"] },
+      [output]: configure(opts, [
+        "typescript",
+        "typescript-operations",
+        `typescript-${opts.client}`,
+      ]),
+    },
+  };
+}
+
+function buildColocate(opts: Options): Types.Config {
+  const types = join(opts.root, "queries/index.ts");
+  const schemaOutput = join(opts.root, "queries/schema.graphql");
+  const documents = join(opts.root, "**/!(schema).graphql");
+
+  return {
+    schema: opts.schema,
+    documents,
+    hooks: HOOKS,
+    generates: {
+      [schemaOutput]: { plugins: ["schema-ast"] },
+      [types]: configure(opts, ["typescript"]),
+      [opts.root]: {
+        preset: "near-operation-file",
+        presetConfig: {
+          baseTypesPath: "queries",
+          extension: ".ts",
         },
+        ...configure(opts, [
+          "typescript-operations",
+          `typescript-${opts.client}`,
+        ]),
       },
     },
   };
+}
+
+export function build(opts: Options): Types.Config {
+  if (opts.colocate) {
+    return buildColocate(opts);
+  } else {
+    return buildDefault(opts);
+  }
 }
