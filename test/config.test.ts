@@ -96,7 +96,7 @@ test("build (colocate)", () => {
       root: {
         preset: "near-operation-file",
         presetConfig: {
-          baseTypesPath: "queries",
+          baseTypesPath: "colocate",
           extension: ".ts",
         },
         plugins: ["typescript-operations", "typescript-react-apollo"],

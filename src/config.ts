@@ -86,7 +86,7 @@ function buildColocate(opts: Options): Types.Config {
       [opts.root]: {
         preset: "near-operation-file",
         presetConfig: {
-          baseTypesPath: "queries",
+          baseTypesPath: opts.colocate,
           extension: ".ts",
         },
         ...configure(opts, [
