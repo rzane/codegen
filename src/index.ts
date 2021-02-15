@@ -71,7 +71,7 @@ export async function execute(
     schema,
     client,
     suffix: Boolean(opts.suffix),
-    immutable: Boolean(opts.suffix),
+    immutable: Boolean(opts.immutable),
     colocate: opts.colocate,
   });
 
