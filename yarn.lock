@@ -648,10 +648,10 @@
     pascal-case "^3.1.1"
     tslib "~2.0.1"
 
-"@graphql-codegen/typescript-react-query@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-1.2.0.tgz#bf3c0a1b649b0180eeba61f2a76cb4af79496797"
-  integrity sha512-PxmElzNziFR85sVklm2hznGt+9oVsB3W7lV1jlKIuaCpe+VWZrpuIF0suL3wjilJR/1OBKu/Kk/ogJGZT2V8UQ==
+"@graphql-codegen/typescript-react-query@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-1.2.2.tgz#3fe2359a389e59f969eab5d99db97f832cab3ceb"
+  integrity sha512-nBAPiEQsSc23a0RdXaY/sbMPgQnpSrKX/zOepKE/GzlC4mxDGHFLvyk8jyn9BJGRAxnKyiDLJkAXLWPVKhZRgA==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^1.18.2"
     "@graphql-codegen/visitor-plugin-common" "^1.18.3"
