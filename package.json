@@ -39,7 +39,7 @@
     "@graphql-codegen/typescript": "^1.21.0",
     "@graphql-codegen/typescript-operations": "^1.17.14",
     "@graphql-codegen/typescript-react-apollo": "^2.2.1",
-    "@graphql-codegen/typescript-react-query": "^1.2.0",
+    "@graphql-codegen/typescript-react-query": "^1.2.2",
     "@types/minimist": "^1.2.1",
     "minimist": "^1.2.5"
   },
