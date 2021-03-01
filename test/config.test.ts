@@ -77,7 +77,6 @@ test("build (client: react-query)", () => {
 test("build (colocate)", () => {
   expect(build({ ...defaults, colocate: "src/colocate" })).toEqual({
     schema: "schema",
-    documents: "src/**/!(schema).graphql",
     hooks: expect.objectContaining({
       afterAllFileWrite: ["prettier --write"],
     }),
@@ -94,6 +93,7 @@ test("build (colocate)", () => {
         },
       },
       src: {
+        documents: "src/**/!(schema).graphql",
         preset: "near-operation-file",
         presetConfig: {
           baseTypesPath: "colocate",

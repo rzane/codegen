@@ -80,12 +80,12 @@ function buildColocate(opts: Options): Types.Config {
 
   return {
     schema: opts.schema,
-    documents,
     hooks: HOOKS,
     generates: {
       [schemaOutput]: { plugins: ["schema-ast"] },
       [types]: configure(opts, ["typescript"]),
       [opts.root]: {
+        documents,
         preset: "near-operation-file",
         presetConfig: {
           baseTypesPath,
