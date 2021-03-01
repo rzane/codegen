@@ -1,4 +1,4 @@
-import { join } from "path";
+import * as path from "path";
 import type { Types } from "@graphql-codegen/plugin-helpers";
 
 export interface Options {
@@ -52,9 +52,9 @@ function configure(opts: Options, plugins: string[]): Types.ConfiguredOutput {
 }
 
 function buildDefault(opts: Options): Types.Config {
-  const output = join(opts.root, "index.ts");
-  const schemaOutput = join(opts.root, "schema.graphql");
-  const documents = join(opts.root, "**/!(schema).graphql");
+  const output = path.join(opts.root, "index.ts");
+  const schemaOutput = path.join(opts.root, "schema.graphql");
+  const documents = path.join(opts.root, "**/!(schema).graphql");
 
   return {
     schema: opts.schema,
@@ -72,9 +72,11 @@ function buildDefault(opts: Options): Types.Config {
 }
 
 function buildColocate(opts: Options): Types.Config {
-  const types = join(opts.colocate!, "index.ts");
-  const schemaOutput = join(opts.colocate!, "schema.graphql");
-  const documents = join(opts.root, "**/!(schema).graphql");
+  const types = path.join(opts.colocate!, "index.ts");
+  const baseTypesPath = path.relative(opts.root, opts.colocate!);
+
+  const schemaOutput = path.join(opts.colocate!, "schema.graphql");
+  const documents = path.join(opts.root, "**/!(schema).graphql");
 
   return {
     schema: opts.schema,
@@ -86,7 +88,7 @@ function buildColocate(opts: Options): Types.Config {
       [opts.root]: {
         preset: "near-operation-file",
         presetConfig: {
-          baseTypesPath: opts.colocate,
+          baseTypesPath,
           extension: ".ts",
         },
         ...configure(opts, [

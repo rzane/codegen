@@ -7,7 +7,7 @@ const scalars = {
 };
 
 const defaults: Options = {
-  root: "root",
+  root: "src",
   schema: "schema",
   client: "react-apollo",
   immutable: false,
@@ -18,15 +18,15 @@ const defaults: Options = {
 test("build", () => {
   expect(build(defaults)).toEqual({
     schema: "schema",
-    documents: "root/**/!(schema).graphql",
+    documents: "src/**/!(schema).graphql",
     hooks: expect.objectContaining({
       afterAllFileWrite: ["prettier --write"],
     }),
     generates: {
-      "root/schema.graphql": {
+      "src/schema.graphql": {
         plugins: ["schema-ast"],
       },
-      "root/index.ts": {
+      "src/index.ts": {
         plugins: [
           "typescript",
           "typescript-operations",
@@ -46,14 +46,14 @@ test("build", () => {
 
 test("build (suffix)", () => {
   expect(build({ ...defaults, suffix: true })).toHaveProperty(
-    ["generates", "root/index.ts", "config", "omitOperationSuffix"],
+    ["generates", "src/index.ts", "config", "omitOperationSuffix"],
     false
   );
 });
 
 test("build (immutable)", () => {
   expect(build({ ...defaults, immutable: true })).toHaveProperty(
-    ["generates", "root/index.ts", "config", "immutableTypes"],
+    ["generates", "src/index.ts", "config", "immutableTypes"],
     true
   );
 });
@@ -62,30 +62,30 @@ test("build (client: react-query)", () => {
   const config = build({ ...defaults, client: "react-query" });
 
   expect(config).toHaveProperty(
-    ["generates", "root/index.ts", "plugins", 2],
+    ["generates", "src/index.ts", "plugins", 2],
     "typescript-react-query"
   );
 
   expect(config).not.toHaveProperty([
     "generates",
-    "root/index.ts",
+    "src/index.ts",
     "config",
     "reactApolloVersion",
   ]);
 });
 
 test("build (colocate)", () => {
-  expect(build({ ...defaults, colocate: "colocate" })).toEqual({
+  expect(build({ ...defaults, colocate: "src/colocate" })).toEqual({
     schema: "schema",
-    documents: "root/**/!(schema).graphql",
+    documents: "src/**/!(schema).graphql",
     hooks: expect.objectContaining({
       afterAllFileWrite: ["prettier --write"],
     }),
     generates: {
-      "colocate/schema.graphql": {
+      "src/colocate/schema.graphql": {
         plugins: ["schema-ast"],
       },
-      "colocate/index.ts": {
+      "src/colocate/index.ts": {
         plugins: ["typescript"],
         config: {
           scalars,
@@ -93,7 +93,7 @@ test("build (colocate)", () => {
           preResolveTypes: true,
         },
       },
-      root: {
+      src: {
         preset: "near-operation-file",
         presetConfig: {
           baseTypesPath: "colocate",
