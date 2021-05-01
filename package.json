@@ -34,7 +34,7 @@
   "dependencies": {
     "@graphql-codegen/cli": "^1.21.1",
     "@graphql-codegen/core": "^1.17.9",
-    "@graphql-codegen/near-operation-file-preset": "^1.17.13",
+    "@graphql-codegen/near-operation-file-preset": "^1.18.0",
     "@graphql-codegen/schema-ast": "^1.18.1",
     "@graphql-codegen/typescript": "^1.21.0",
     "@graphql-codegen/typescript-operations": "^1.17.14",
