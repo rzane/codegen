@@ -32,7 +32,7 @@
     "prettier": "*"
   },
   "dependencies": {
-    "@graphql-codegen/cli": "^1.21.1",
+    "@graphql-codegen/cli": "^1.21.4",
     "@graphql-codegen/core": "^1.17.9",
     "@graphql-codegen/near-operation-file-preset": "^1.18.0",
     "@graphql-codegen/schema-ast": "^1.18.1",
