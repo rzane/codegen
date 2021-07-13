@@ -4,7 +4,6 @@ import type { Types } from "@graphql-codegen/plugin-helpers";
 export interface Options {
   root: string;
   schema: string;
-  client: string;
   suffix: boolean;
   immutable: boolean;
   colocate: string | undefined;
@@ -29,10 +28,8 @@ const SCALARS = {
 
 function configure(opts: Options, plugins: string[]): Types.ConfiguredOutput {
   const config: Types.PluginConfig = {};
-
   const typescript = plugins.includes("typescript");
   const operations = plugins.includes("typescript-operations");
-  const apollo = plugins.includes("typescript-react-apollo");
 
   if (typescript || operations) {
     config.scalars = SCALARS;
@@ -42,10 +39,6 @@ function configure(opts: Options, plugins: string[]): Types.ConfiguredOutput {
 
   if (operations) {
     config.omitOperationSuffix = !opts.suffix;
-  }
-
-  if (apollo) {
-    config.reactApolloVersion = 3;
   }
 
   return { plugins, config };
@@ -65,7 +58,7 @@ function buildDefault(opts: Options): Types.Config {
       [output]: configure(opts, [
         "typescript",
         "typescript-operations",
-        `typescript-${opts.client}`,
+        "typed-document-node",
       ]),
     },
   };
@@ -87,14 +80,8 @@ function buildColocate(opts: Options): Types.Config {
       [opts.root]: {
         documents,
         preset: "near-operation-file",
-        presetConfig: {
-          baseTypesPath,
-          extension: ".ts",
-        },
-        ...configure(opts, [
-          "typescript-operations",
-          `typescript-${opts.client}`,
-        ]),
+        presetConfig: { baseTypesPath, extension: ".ts" },
+        ...configure(opts, ["typescript-operations", "typed-document-node"]),
       },
     },
   };

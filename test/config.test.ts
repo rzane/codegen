@@ -9,7 +9,6 @@ const scalars = {
 const defaults: Options = {
   root: "src",
   schema: "schema",
-  client: "react-apollo",
   immutable: false,
   suffix: false,
   colocate: undefined,
@@ -27,13 +26,8 @@ test("build", () => {
         plugins: ["schema-ast"],
       },
       "src/index.ts": {
-        plugins: [
-          "typescript",
-          "typescript-operations",
-          "typescript-react-apollo",
-        ],
+        plugins: ["typescript", "typescript-operations", "typed-document-node"],
         config: {
-          reactApolloVersion: 3,
           omitOperationSuffix: true,
           immutableTypes: false,
           preResolveTypes: true,
@@ -56,22 +50,6 @@ test("build (immutable)", () => {
     ["generates", "src/index.ts", "config", "immutableTypes"],
     true
   );
-});
-
-test("build (client: react-query)", () => {
-  const config = build({ ...defaults, client: "react-query" });
-
-  expect(config).toHaveProperty(
-    ["generates", "src/index.ts", "plugins", 2],
-    "typescript-react-query"
-  );
-
-  expect(config).not.toHaveProperty([
-    "generates",
-    "src/index.ts",
-    "config",
-    "reactApolloVersion",
-  ]);
 });
 
 test("build (colocate)", () => {
@@ -99,13 +77,12 @@ test("build (colocate)", () => {
           baseTypesPath: "colocate",
           extension: ".ts",
         },
-        plugins: ["typescript-operations", "typescript-react-apollo"],
+        plugins: ["typescript-operations", "typed-document-node"],
         config: {
           scalars,
           immutableTypes: false,
           preResolveTypes: true,
           omitOperationSuffix: true,
-          reactApolloVersion: 3,
         },
       },
     },
