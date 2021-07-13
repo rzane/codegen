@@ -27,9 +27,6 @@ A zero-config CLI tool to generate GraphQL type definitions and React Hooks. It'
         URL or file path to a GraphQL schema. This option will be overridden
         when the SCHEMA environment variable is set.
 
-      -c, --client <react-query|react-apollo> (default: react-apollo)
-        The preferred GraphQL client.
-
       --suffix
         Append a suffix to operations (e.g. usePersonQuery). This
         is helpful for avoiding naming collisions.
@@ -39,6 +36,9 @@ A zero-config CLI tool to generate GraphQL type definitions and React Hooks. It'
 
       --colocate <common path>
         Generate files adjacent to their GraphQL source.
+
+      --show-config
+        Show the generated configuration
 
       -v, --version
         Output the version number
@@ -68,6 +68,15 @@ Now, you have code!
         posts.graphql
         users.graphql
 
+Import the typed document node and use a query:
+
+```typescript
+import { useQuery } from "@apollo/client"
+import { UserDocument } from "../queries";
+
+useQuery(UserDocument);
+```
+
 ## Colocated Queries
 
 What if you want your queries to live next to your components?
@@ -93,15 +102,3 @@ Now, your file tree should look like this:
           User.tsx
           queries.graphql
           queries.ts   <- This module exports typed React hooks
-
-## Supported Clients
-
-#### [`react-apollo`](https://www.apollographql.com/docs/react/)
-
-This is the default client. It'll just work out of the box.
-
-#### [`react-query`](https://github.com/tannerlinsley/react-query)
-
-To generate code for use with `react-query`, you'll need to run the command with `--client react-query`.
-
-This will also create a file `client.ts` if it does not exist. You should feel free to edit this file.
