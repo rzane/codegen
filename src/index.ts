@@ -27,6 +27,9 @@ Options:
   --colocate
     Generate files adjacent to their GraphQL source.
 
+  --show-config
+    Show the generated configuration
+
   -v, --version
     Output the version number
 
@@ -66,7 +69,11 @@ export async function execute(
     colocate: opts.colocate,
   });
 
-  await generate(config);
+  if (opts["show-config"]) {
+    console.log(JSON.stringify(config, null, 2));
+  } else {
+    await generate(config);
+  }
 }
 
 /**
