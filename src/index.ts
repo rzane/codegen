@@ -1,78 +1,59 @@
 #!/usr/bin/env node
 
-import parse from "minimist";
+import { Command, flags } from "@oclif/command";
 import { generate } from "@graphql-codegen/cli";
 import { build } from "./config";
 
-const help = `Usage: codegen [ROOT] [options]
+class Codegen extends Command {
+  static description = "Generate type definitions from GraphQL queries.";
 
-Generate type definitions from GraphQL queries.
+  static args = [
+    {
+      name: "root",
+      required: true,
+      description: "The directory where your GraphQL queries live",
+    },
+  ];
 
-Arguments:
-  ROOT (required)
-    The directory where your GraphQL queries live.
+  static flags = {
+    schema: flags.string({
+      char: "s",
+      description: "URL or file path to the GraphQL schema",
+      env: "SCHEMA",
+      required: true,
+    }),
+    suffix: flags.boolean({
+      description: "Append a suffix to generated types",
+    }),
+    immutable: flags.boolean({
+      description: "Generate readonly types",
+    }),
+    colocate: flags.string({
+      description: "Generate files adjacent to their GraphQL source",
+    }),
+    "show-config": flags.boolean({
+      description: "Show the generated configuration",
+    }),
+    version: flags.version(),
+    help: flags.help(),
+  };
 
-Options:
-  -s, --schema <SCHEMA> (required)
-    URL or file path to a GraphQL schema. This option will be overridden
-    when the SCHEMA environment variable is set.
+  async run() {
+    const { args, flags } = this.parse(Codegen);
 
-  --suffix
-    Append a suffix to operations (e.g. usePersonQuery). This
-    is helpful for avoiding naming collisions.
+    const config = build({
+      root: args.root,
+      schema: flags.schema,
+      suffix: flags.suffix,
+      immutable: flags.immutable,
+      colocate: flags.colocate,
+    });
 
-  --immutable
-    Generate readonly types.
-
-  --colocate
-    Generate files adjacent to their GraphQL source.
-
-  --show-config
-    Show the generated configuration
-
-  -v, --version
-    Output the version number
-
-  -h, --help
-    Display this help information`;
-
-export async function execute(
-  argv: string[],
-  env: Record<string, string | undefined>
-): Promise<void> {
-  const opts = parse(argv);
-  const [root] = opts._;
-  const schema = env.SCHEMA || opts.schema || opts.s;
-
-  if (opts.v || opts.version) {
-    const pkg = require("../package.json");
-    return console.log(pkg.version);
-  }
-
-  if (opts.h || opts.help) {
-    return console.log(help);
-  }
-
-  if (!root) {
-    throw new Error("Missing argument: ROOT");
-  }
-
-  if (!schema) {
-    throw new Error("Missing option: --schema");
-  }
-
-  const config = build({
-    root,
-    schema,
-    suffix: Boolean(opts.suffix),
-    immutable: Boolean(opts.immutable),
-    colocate: opts.colocate,
-  });
-
-  if (opts["show-config"]) {
-    console.log(JSON.stringify(config, null, 2));
-  } else {
-    await generate(config);
+    if (flags["show-config"]) {
+      this.log(JSON.stringify(config, null, 2));
+    } else {
+      await generate(config);
+    }
   }
 }
 
@@ -80,15 +61,5 @@ export async function execute(
  * If this file is invoked as an executable, run the program.
  */
 if (require.main === module) {
-  execute(process.argv.slice(2), process.env).catch((error) => {
-    if (process.env.DEBUG) {
-      console.error(error);
-    } else if (error.code) {
-      console.error(`${error.code}: ${error.message}`);
-    } else {
-      console.error(error.message);
-    }
-
-    process.exit(1);
-  });
+  (Codegen.run() as Promise<any>).catch(require("@oclif/errors/handle"));
 }
