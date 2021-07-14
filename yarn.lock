@@ -624,7 +624,7 @@
     yaml "^1.10.0"
     yargs "^17.0.0"
 
-"@graphql-codegen/core@1.17.10", "@graphql-codegen/core@^1.17.10":
+"@graphql-codegen/core@1.17.10":
   version "1.17.10"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/core/-/core-1.17.10.tgz#3b85b5bc2e84fcacbd25fced5af47a4bb2d7a8bd"
   integrity sha512-RA3umgVDs/RI/+ztHh+H4GfJxrJUfWJQqoAkMfX4qPTVO5qsy3R4vPudE0oP8w+kFbL8dFsRfAAPUZxI4jV/hQ==
@@ -634,10 +634,10 @@
     "@graphql-tools/utils" "^7.9.1"
     tslib "~2.2.0"
 
-"@graphql-codegen/near-operation-file-preset@^1.18.6-alpha-96980211a.0":
-  version "1.18.6-alpha-96980211a.0"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-1.18.6-alpha-96980211a.0.tgz#7f24cf997d3124c24be9e83951328d057e739e66"
-  integrity sha512-y7ObyI0k/nhGAOxANsaxe/M750iwV5J/A1M1mAAV/Mw/nKmof7StVL2h0FWVKLV/5q/UdeG86hDw1qLcp29lyQ==
+"@graphql-codegen/near-operation-file-preset@^1.18.5":
+  version "1.18.5"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-1.18.5.tgz#0c44d2edccf3624c785fff67282a457fa758549c"
+  integrity sha512-AN1IxgxD/LgUmdiFYw7orgLcBwFYYzh7KoEDiq5XAYgpHVjvRD9oyiM7RZvKNEKc8VunCqKo6lzA7pfiQcPvyg==
   dependencies:
     "@graphql-codegen/add" "^2.0.2"
     "@graphql-codegen/plugin-helpers" "^1.18.8"
@@ -1169,7 +1169,7 @@
     debug "^4.1.1"
     semver "^7.3.2"
 
-"@oclif/config@^1.15.1":
+"@oclif/config@^1.15.1", "@oclif/config@^1.17.0":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@oclif/config/-/config-1.17.0.tgz#ba8639118633102a7e481760c50054623d09fcab"
   integrity sha512-Lmfuf6ubjQ4ifC/9bz1fSCHc6F6E653oyaRXxg+lgT4+bYf9bk+nqrUpAbrXyABkCqgIBiFr3J4zR/kiFdE1PA==
@@ -1372,7 +1372,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*":
+"@types/node@*", "@types/node@^16.3.2":
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.2.tgz#655432817f83b51ac869c2d51dd8305fb8342e16"
   integrity sha512-jJs9ErFLP403I+hMLGnqDRWT0RYKSvArxuBVh2veudHV7ifEC1WAmjJADacZ7mRbA2nWgHtn8xyECMAot0SkAw==
