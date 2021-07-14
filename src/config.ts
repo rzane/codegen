@@ -34,6 +34,7 @@ function configure(opts: Options, plugins: string[]): Types.ConfiguredOutput {
   if (typescript || operations) {
     config.scalars = SCALARS;
     config.preResolveTypes = true;
+    config.dedupeFragments = true;
     config.immutableTypes = opts.immutable;
   }
 
