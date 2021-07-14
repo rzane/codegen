@@ -31,6 +31,11 @@ class Codegen extends Command {
     colocate: flags.string({
       description: "Generate files adjacent to their GraphQL source",
     }),
+    map: flags.string({
+      char: "m",
+      multiple: true,
+      description: "Declare type type for a scalar",
+    }),
     "show-config": flags.boolean({
       description: "Show the generated configuration",
     }),
@@ -47,6 +52,9 @@ class Codegen extends Command {
       suffix: flags.suffix,
       immutable: flags.immutable,
       colocate: flags.colocate,
+      scalars: Object.fromEntries(
+        flags.map.map((value) => value.split(":", 2))
+      ),
     });
 
     if (flags["show-config"]) {

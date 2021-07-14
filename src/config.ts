@@ -7,6 +7,7 @@ export interface Options {
   suffix: boolean;
   immutable: boolean;
   colocate: string | undefined;
+  scalars: Record<string, string>;
 }
 
 const HOOKS = {
@@ -32,10 +33,10 @@ function configure(opts: Options, plugins: string[]): Types.ConfiguredOutput {
   const operations = plugins.includes("typescript-operations");
 
   if (typescript || operations) {
-    config.scalars = SCALARS;
     config.preResolveTypes = true;
     config.dedupeFragments = true;
     config.immutableTypes = opts.immutable;
+    config.scalars = { ...SCALARS, ...opts.scalars };
   }
 
   if (operations) {
