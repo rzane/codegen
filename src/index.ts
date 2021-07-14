@@ -35,6 +35,7 @@ class Codegen extends Command {
       char: "m",
       multiple: true,
       description: "Declare type type for a scalar",
+      default: [],
     }),
     "show-config": flags.boolean({
       description: "Show the generated configuration",
