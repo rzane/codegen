@@ -11,7 +11,7 @@ class Codegen extends Command {
     {
       name: "root",
       required: true,
-      description: "The directory where your GraphQL queries live",
+      description: "directory where your GraphQL queries live",
     },
   ];
 
@@ -23,22 +23,21 @@ class Codegen extends Command {
       required: true,
     }),
     suffix: flags.boolean({
-      description: "Append a suffix to generated types",
+      description: "append a suffix to generated types",
     }),
     immutable: flags.boolean({
-      description: "Generate readonly types",
+      description: "generate readonly types",
     }),
     colocate: flags.string({
-      description: "Generate files adjacent to their GraphQL source",
+      description: "generate files adjacent to their GraphQL source",
     }),
-    map: flags.string({
-      char: "m",
+    types: flags.string({
+      char: "t",
       multiple: true,
-      description: "Declare type type for a scalar",
-      default: [],
+      description: "declare type for a custom scalar",
     }),
     "show-config": flags.boolean({
-      description: "Show the generated configuration",
+      description: "show the generated configuration",
     }),
     version: flags.version(),
     help: flags.help(),
@@ -53,9 +52,7 @@ class Codegen extends Command {
       suffix: flags.suffix,
       immutable: flags.immutable,
       colocate: flags.colocate,
-      scalars: Object.fromEntries(
-        flags.map.map((value) => value.split(":", 2))
-      ),
+      scalars: (flags.types ?? []).reduce(this.parseScalar, {}),
     });
 
     if (flags["show-config"]) {
@@ -64,6 +61,18 @@ class Codegen extends Command {
       await generate(config);
     }
   }
+
+  private parseScalar = (scalars: Record<string, string>, value: string) => {
+    const [scalar, type] = value.split(":", 2);
+
+    if (!scalar || !type) {
+      this.error(
+        `Types should be represented as "scalar:type" (got: "${value}")`
+      );
+    }
+
+    return { ...scalars, [scalar]: type };
+  };
 }
 
 /**

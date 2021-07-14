@@ -14,37 +14,23 @@ A zero-config CLI tool to generate GraphQL type definitions and React Hooks. It'
 
     $ yarn add @stackup/codegen --dev
     $ yarn codegen --help
-    Usage: codegen [ROOT] [options]
-
     Generate type definitions from GraphQL queries.
 
-    Arguments:
-      ROOT (required)
-        The directory where your GraphQL queries live.
+    USAGE
+      $ @stackup/codegen ROOT
 
-    Options:
-      -s, --schema <SCHEMA> (required)
-        URL or file path to a GraphQL schema. This option will be overridden
-        when the SCHEMA environment variable is set.
+    ARGUMENTS
+      ROOT  directory where your GraphQL queries live
 
-      --suffix
-        Append a suffix to operations (e.g. usePersonQuery). This
-        is helpful for avoiding naming collisions.
-
-      --immutable
-        Generate readonly types.
-
-      --colocate <common path>
-        Generate files adjacent to their GraphQL source.
-
-      --show-config
-        Show the generated configuration
-
-      -v, --version
-        Output the version number
-
-      -h, --help
-        Display this help information
+    OPTIONS
+      -s, --schema=schema  (required) URL or file path to the GraphQL schema
+      -t, --types=types    declare type for a custom scalar
+      --colocate=colocate  generate files adjacent to their GraphQL source
+      --help               show CLI help
+      --immutable          generate readonly types
+      --show-config        show the generated configuration
+      --suffix             append a suffix to generated types
+      --version            show CLI version
 
 ## Usage
 
