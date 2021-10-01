@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
-    "@types/node": "^16.3.2",
+    "@types/node": "^16.10.2",
     "graphql": "^15.5.1",
     "graphql-tag": "^2.12.5",
     "jest": "^27.0.6",
