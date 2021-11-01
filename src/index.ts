@@ -4,7 +4,7 @@ import { Command, flags } from "@oclif/command";
 import { generate } from "@graphql-codegen/cli";
 import { build } from "./config";
 
-class Codegen extends Command {
+export class Codegen extends Command {
   static description = "Generate type definitions from GraphQL queries.";
 
   static args = [
